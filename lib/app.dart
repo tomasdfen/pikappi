@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:pikappi/screens/home/home.dart';
 import 'screens/home/home.dart';
+import 'screens/pokedex/pokedex.dart';
 
 const LocationsRoute = '/';
 const LocationDetailRoute = '/location_detail';
+const PokedexRoute = '/pokedex';
 
 class App extends StatelessWidget {
   @override
@@ -24,6 +26,9 @@ class App extends StatelessWidget {
           break;
         case LocationDetailRoute:
           //screen = LocationDetail(arguments['id']);
+          break;
+        case PokedexRoute:
+          screen = Pokedex();
           break;
         default:
           return null;
