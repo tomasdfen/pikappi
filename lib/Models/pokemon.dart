@@ -25,6 +25,7 @@ class Pokemon {
   String name;
   int number;
   List<String> types;
+  String sprite;
   int hp;
   int atk;
   int def;
@@ -44,6 +45,10 @@ class Pokemon {
   get getTypes => this.types;
 
   set setTypes(types) => this.types = types;
+
+  set setSprite(String sprite) => this.sprite = sprite;
+
+  get getSprite => this.sprite;
 
   get getHp => this.hp;
 
@@ -77,6 +82,7 @@ class Pokemon {
       String _name,
       int _number,
       List<String> _types,
+      String _sprite,
       int _hp,
       int _atk,
       int _def,
@@ -88,6 +94,7 @@ class Pokemon {
     name = _name;
     number = _number;
     types = _types;
+    sprite = _sprite;
     hp = _hp;
     atk = _atk;
     def = _def;
@@ -107,6 +114,7 @@ class Pokemon {
       data['types'][0]["type"]["name"],
       data['types'][1]["type"]["name"]
     ];
+    var _sprite = data["sprites"]["front_default"];
     var _hp = data['stats'][0]['base_stat'];
     var _atk = data['stats'][1]['base_stat'];
     var _def = data['stats'][2]['base_stat'];
@@ -118,6 +126,6 @@ class Pokemon {
       data['abilities'][1]['ability']['name']
     ];
     return new Pokemon(
-        _name, _number, _types, _hp, _atk, _def, _spAtk, _spDef, _spd, _abilities);
+        _name, _number, _types, _sprite, _hp, _atk, _def, _spAtk, _spDef, _spd, _abilities);
   }
 }

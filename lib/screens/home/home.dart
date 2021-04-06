@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../Widgets/ImageButton.dart';
+import '../../Models/pokemon.dart';
+import 'dart:math';
 
 class Home extends StatelessWidget {
   @override
@@ -21,20 +23,14 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            Expanded(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  child: Icon(Icons.accessibility),
-                  height: 10,
-                ),
-                Container(
-                  child: Icon(Icons.account_balance),
-                  height: 10,
-                ),
-              ],
-            )),
+            Container(alignment: Alignment.topRight,
+              child: TopRow('assets/trainers/' + 'trainer_1' + '.png')),
+            Container(
+                height: 220,
+                child: Image.network(
+                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${Random().nextInt(151) + 1}.png",
+                  fit: BoxFit.fill,
+                )),
             BottomRow(listaBotones),
           ],
         ),
@@ -61,6 +57,31 @@ class BottomRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[]..addAll(_list),
       ),
+    );
+  }
+}
+
+class TopRow extends StatelessWidget {
+  final String _imagen;
+
+  TopRow(this._imagen);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(28.0),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            CircleAvatar(
+                radius: 45,
+                backgroundColor: Color(0xffff3030),
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: AssetImage(_imagen),
+                  backgroundColor: Color(0xffffffff),
+                ))
+          ]),
     );
   }
 }
