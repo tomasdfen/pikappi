@@ -38,12 +38,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "convert",
-      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "1.17"
-    },
-    {
       "name": "cupertino_icons",
       "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2",
       "packageUri": "lib/",
@@ -63,13 +57,25 @@
     },
     {
       "name": "flutter_svg",
-      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.19.3",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.21.0+1",
       "packageUri": "lib/",
-      "languageVersion": "2.2"
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_test",
       "rootUri": "file:///D:/Archivos%20de%20programa/flutter/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "hexcolor",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/hexcolor-2.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -82,6 +88,12 @@
     {
       "name": "http_parser",
       "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "js",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -105,15 +117,15 @@
     },
     {
       "name": "path_drawing",
-      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1+1",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.0",
       "packageUri": "lib/",
-      "languageVersion": "1.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "path_parsing",
-      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.2.0",
       "packageUri": "lib/",
-      "languageVersion": "1.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "pedantic",
@@ -123,9 +135,9 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-3.1.0",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-4.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
@@ -183,9 +195,9 @@
     },
     {
       "name": "xml",
-      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/xml-4.5.1",
+      "rootUri": "file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.12"
     },
     {
       "name": "pikappi",
@@ -194,7 +206,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-04-12T17:09:02.553794Z",
+  "generated": "2021-04-14T17:56:49.945416Z",
   "generator": "pub",
   "generatorVersion": "2.12.1"
 }
