@@ -31,10 +31,9 @@ class Pokedex extends StatelessWidget {
       body: GridView.count(
         crossAxisCount: 3,
         children: List.generate(151, (index) {
-          int numero = index + 1;
           return FutureBuilder(
               future:
-                  fetchPokemon("https://pokeapi.co/api/v2/pokemon/${numero}/"),
+                  fetchPokemon("https://pokeapi.co/api/v2/pokemon/${index+1}/"),
               builder: (context, snapshot) {
                 if (snapshot.hasError) print(snapshot.error);
 
@@ -68,7 +67,7 @@ class PokedexCell extends StatelessWidget {
         child: Column(
           children: <Widget>[
             SvgPicture.network(
-              p.getSprite,
+              p.getPrettySprite,
               height: SizeConfig.blockSizeVertical * 30,
               width: SizeConfig.blockSizeHorizontal * 30,
             ),

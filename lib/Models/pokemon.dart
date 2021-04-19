@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 enum Type {
@@ -29,6 +28,7 @@ class Pokemon {
   int number;
   List<dynamic> types;
   String sprite;
+  String prettySprite;
   int hp;
   int atk;
   int def;
@@ -50,8 +50,12 @@ class Pokemon {
   set setTypes(types) => this.types = types;
 
   set setSprite(String sprite) => this.sprite = sprite;
+  
+  set setPrettySprite(String prettySprite) => this.prettySprite = prettySprite;
 
   get getSprite => this.sprite;
+
+  get getPrettySprite => this.prettySprite;
 
   get getHp => this.hp;
 
@@ -86,6 +90,7 @@ class Pokemon {
     this.number,
     this.types,
     this.sprite,
+    this.prettySprite,
     this.hp,
     this.atk,
     this.def,
@@ -107,7 +112,8 @@ class Pokemon {
           : [
               data['types'][0]["type"]["name"],
             ] as List<dynamic>,
-      sprite:
+      sprite: data["sprites"]['front_default'] as String,
+      prettySprite:
           data["sprites"]["other"]['dream_world']['front_default'] as String,
       hp: data['stats'][0]['base_stat'] as int,
       atk: data['stats'][1]['base_stat'] as int,
@@ -141,7 +147,6 @@ Future<Pokemon> fetchPokemon(String url) async {
 
 Pokemon parsePokemon(String responsebody) {
   final parsed = jsonDecode(responsebody);
-  print("En fecth:" + parsed['name']);
   return Pokemon.fromJson(parsed);
 }
 
