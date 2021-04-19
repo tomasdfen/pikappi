@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 enum Type {
@@ -26,7 +27,7 @@ enum Type {
 class Pokemon {
   String name;
   int number;
-  List<String> types;
+  List<dynamic> types;
   String sprite;
   int hp;
   int atk;
@@ -34,7 +35,7 @@ class Pokemon {
   int spAtk;
   int spDef;
   int spd;
-  List<String> abilities;
+  List<dynamic> abilities;
 
   String get getName => this.name;
 
@@ -95,34 +96,60 @@ class Pokemon {
   });
 
   factory Pokemon.fromJson(dynamic data) {
-    return Pokemon(
-        name: data["name"] as String,
-        number: data["id"] as int,
-        types: [
-          data['types'][0]["type"]["name"],
-          data['types'][1]["type"]["name"],
-        ] as List<String>,
-        sprite: data["sprites"]["front_default"] as String,
-        hp: data['stats'][0]['base_stat'] as int,
-        atk: data['stats'][1]['base_stat'] as int,
-        def: data['stats'][2]['base_stat'] as int,
-        spAtk: data['stats'][3]['base_stat'] as int,
-        spDef: data['stats'][4]['base_stat'] as int,
-        spd: data['stats'][5]['base_stat'] as int,
-        abilities: [
-          data['abilities'][0]['ability']['name'],
-          data['abilities'][1]['ability']['name']
-        ] as List<String>);
+    var pokemon = Pokemon(
+      name: data["name"] as String,
+      number: data["id"] as int,
+      types: (data['types'].length == 2)
+          ? [
+              data['types'][0]["type"]["name"],
+              data['types'][1]["type"]["name"],
+            ] as List<dynamic>
+          : [
+              data['types'][0]["type"]["name"],
+            ] as List<dynamic>,
+      sprite:
+          data["sprites"]["other"]['dream_world']['front_default'] as String,
+      hp: data['stats'][0]['base_stat'] as int,
+      atk: data['stats'][1]['base_stat'] as int,
+      def: data['stats'][2]['base_stat'] as int,
+      spAtk: data['stats'][3]['base_stat'] as int,
+      spDef: data['stats'][4]['base_stat'] as int,
+      spd: data['stats'][5]['base_stat'] as int,
+      abilities: (data['abilities'].length == 3)
+          ? [
+              data['abilities'][0]['ability']['name'],
+              data['abilities'][1]['ability']['name'],
+              data['abilities'][2]['ability']['name']
+            ] as List<dynamic>
+          : (data['abilities'].length == 2)
+              ? [
+                  data['abilities'][0]['ability']['name'],
+                  data['abilities'][1]['ability']['name'],
+                ] as List<dynamic>
+              : [
+                  data['abilities'][0]['ability']['name'],
+                ] as List<dynamic>,
+    );
+    return pokemon;
   }
 }
 
-List<Pokemon> parsePokemon(String responseBody) {
-  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-  return parsed.map<Pokemon>((json) => Pokemon.fromJson(json)).toList();
+Future<Pokemon> fetchPokemon(String url) async {
+  final response = await http.get(Uri.parse(url));
+  return parsePokemon(response.body);
 }
 
-Future<List<Pokemon>> fetchPokemon() async {
-  final response = await http
-      .get(Uri.parse("https://pokeapi.co/api/v2/pokemon?limit=151"));
-  return parsePokemon(response.body);
+Pokemon parsePokemon(String responsebody) {
+  final parsed = jsonDecode(responsebody);
+  print("En fecth:" + parsed['name']);
+  return Pokemon.fromJson(parsed);
+}
+
+List<Future<Pokemon>> fetchPokemonList(int start, int end) {
+  List<Future<Pokemon>> p;
+  for (var i = start; i < end + 1; i++) {
+    String url = "https://pokeapi.co/api/v2/pokemon/${i}/";
+    p.add(fetchPokemon(url));
+  }
+  return p;
 }
