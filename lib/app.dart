@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pikappi/screens/home/home.dart';
 import 'screens/home/home.dart';
 import 'screens/pokedex/pokedex.dart';
+import 'screens/settings/Settings.dart';
 
 const LocationsRoute = '/';
 const LocationDetailRoute = '/location_detail';
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: Settings(),
       onGenerateRoute: _routes(),
     );
   }
