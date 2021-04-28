@@ -44,8 +44,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'utils/settings_assets.dart';
 import '../../app.dart';
+import '../../DataBase/connection.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget{
+  _Settings createState()=> _Settings();
+}
+class _Settings extends State<Settings> {
   static final String path = "lib/screens/settings/Settings.dart";
   final TextStyle headerStyle = TextStyle(
     color: Colors.grey.shade800,
@@ -53,8 +57,16 @@ class Settings extends StatelessWidget {
     fontSize: 20.0,
   );
   //TODO maximo de tamaño del nombre
-  final foto = 'assets/trainers/trainer_1.png';
-  final usuario = 'Juanlu Petite';
+  final con = DBConnection().getConnection();
+
+  void showConsoleUsingPrint() {
+    print('con');
+
+  }
+  final String foto = 'assets/trainers/trainer_1.png';
+  final String usuario = 'Juanlu Petite';
+
+  bool rece = true;
 
   _onLocationTap(BuildContext context) {
     Navigator.pushNamed(context, PokedexRoute);
@@ -110,16 +122,20 @@ class Settings extends StatelessWidget {
             ),
             Card(
               margin: const EdgeInsets.symmetric(
-                vertical: 8.0,
+                vertical: 10.0,
                 horizontal: 0,
               ),
               child: Column(
                 children: <Widget>[
                   SwitchListTile(
                     activeColor: Colors.purple,
-                    value: true,
+                    value: rece,
                     title: Text("Received notification"),
-                    onChanged: (val) {},
+                    onChanged: (bool value) {
+                      setState(() {
+                        rece = value;
+                      });
+                    },
                   ),
                   _buildDivider(),
                   SwitchListTile(
