@@ -29,8 +29,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //home: Home(),
-      home: Pokedex(),
+      home: Home(),
+      //Pokedex: Pokedex(),
       onGenerateRoute: _routes(),
     );
   }

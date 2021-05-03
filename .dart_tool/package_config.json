@@ -56,10 +56,22 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flappy_search_bar",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flappy_search_bar-1.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///C:/src/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_staggered_grid_view",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_staggered_grid_view-0.3.4",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
     },
     {
       "name": "flutter_svg",
@@ -194,7 +206,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-04-12T15:42:28.991918Z",
+  "generated": "2021-04-27T17:27:48.876805Z",
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }
