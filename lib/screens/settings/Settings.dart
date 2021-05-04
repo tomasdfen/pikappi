@@ -57,7 +57,7 @@ class _Settings extends State<Settings> {
     fontSize: 20.0,
   );
   //TODO maximo de tamaño del nombre
-  final con = DBConnection().getConnection();
+  final con = getUser();
 
   void showConsoleUsingPrint() {
     print('con');
