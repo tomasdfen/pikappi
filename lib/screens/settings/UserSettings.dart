@@ -14,7 +14,7 @@ class UserSettings extends StatelessWidget {
   final Image entrenador1 =
       new Image.asset('assets/trainers/' + 'trainer_1' + '.png');
   final Image entrenador2 =
-      new Image.asset('assets/trainers/' + 'trainer_1' + '.png');
+      new Image.asset('assets/trainers/' + 'trainer_2' + '.png');
   final Image entrenador3 =
       new Image.asset('assets/trainers/' + 'trainer_1' + '.png');
 
@@ -33,48 +33,51 @@ class UserSettings extends StatelessWidget {
           margin: const EdgeInsets.only(left: 20.0, right: 20.0),
           child: Column(
             children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(bottom: 20.0),
-                padding: EdgeInsets.symmetric(
-                    vertical:
-                        5.0), //padding interior de las letras con el boxdecoration
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.white),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 2,
-                      child: Icon(
-                        IconData(0xe900, fontFamily: 'MaterialIcons'),
-                        color: HexColor("ff7f00"),
+              Expanded(
+                flex: 0,
+                child:Container(
+
+                  margin: const EdgeInsets.only(bottom: 20.0),
+                  padding: EdgeInsets.symmetric(
+                      vertical:
+                      5.0), //padding interior de las letras con el boxdecoration
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.white),
+
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 2,
+                        child: Icon(
+                          IconData(0xe900, fontFamily: 'MaterialIcons'),
+                          color: HexColor("ff7f00"),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                        flex: 6,
-                        child: Center(child: Text("Ajuste de Cuenta"))),
-                    Expanded(
-                      flex: 2,
-                      child: Icon(
-                        IconData(0xe900, fontFamily: 'MaterialIcons'),
-                        color: HexColor("ff7f00"),
-                      ),
-                    )
-                  ],
-                ),
+                      Expanded(
+                          flex: 6,
+                          child: Center(child: Text("Ajuste de Cuenta"))),
+                      Expanded(
+                        flex: 2,
+                        child: Icon(
+                          IconData(0xe900, fontFamily: 'MaterialIcons'),
+                          color: HexColor("ff7f00"),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+
               ),
-              Container(
-                height: MediaQuery.of(context).size.width *
-                    0.9, //creamos una sized box basada directamente en el tamaño actual del contenedor superior
-                margin: const EdgeInsets.only(bottom: 20.0, top: 10.0),
-                padding: EdgeInsets.symmetric(
-                    vertical:
-                        5.0), //padding interior de las letras con el boxdecoration
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: HexColor("ffffff")),
+              Expanded(
+                flex: 7,
 
                 child: Container(
+                    margin: const EdgeInsets.only(bottom: 20.0, top: 10.0),
+                    padding: EdgeInsets.symmetric(vertical: 5.0), //padding interior de las letras con el boxdecoration
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        color: HexColor("ffffff")),
                     child: Column(
                   children: <Widget>[
                     Container(
@@ -109,7 +112,7 @@ class UserSettings extends StatelessWidget {
                                     'assets/trainers/' + 'trainer_1' + '.png'),
                               )),
                           Expanded(
-                              flex: 5,
+                              flex: 4,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                                 child: Container(
@@ -150,7 +153,6 @@ class UserSettings extends StatelessWidget {
                                               ],
                                             ),
                                             SizedBox(
-
                                                 width: 100,
                                                 height: 50,
                                                 child: ClipRRect(
@@ -192,7 +194,7 @@ class UserSettings extends StatelessWidget {
                                           Row(
                                             children: <Widget>[
                                               Expanded(
-                                                  flex: 9,
+
                                                   child: Container(
                                                       height: 40,
                                                       child: Center(
@@ -263,7 +265,7 @@ class UserSettings extends StatelessWidget {
                                             children: <Widget>[
                                               Expanded(
                                                   child: Center(
-                                                child: Text("barra exp"),
+                                                    child: Text("barra exp"),
                                               )),
                                             ],
                                           ),
@@ -280,6 +282,7 @@ class UserSettings extends StatelessWidget {
                 )),
               ),
               Expanded(
+                flex: 4,
                 child: Column(
                   children: [
                     Expanded(
@@ -311,16 +314,13 @@ class UserSettings extends StatelessWidget {
                     Expanded(
                         flex: 6,
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.blueAccent,
-                          ),
                           child: GridView.count(
                             childAspectRatio: 1.0,
                             padding: EdgeInsets.only(left: 15, right: 15),
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 25,
-                            mainAxisSpacing: 25,
-                            children: [],
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20,
+                            children: lista_entrenadores,
                           ),
                         )),
                     Expanded(
