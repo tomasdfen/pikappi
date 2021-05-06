@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import '../../Widgets/ImageButton.dart';
 import '../../Models/pokemon.dart';
+import '../../Widgets/ScreenSize.dart';
 import 'dart:math';
+import '../../app.dart';
+import '../settings/UserSettings.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<ImageButton> listaBotones = [];
-    listaBotones.add(ImageButton('settings.png', 100));
-    listaBotones.add(ImageButton('pokeball.png', 150));
-    listaBotones.add(ImageButton('pokedex.png', 100));
+    listaBotones.add(ImageButton('settings.png', 75));
+    listaBotones.add(ImageButton('pokeball.png', 123));
+    listaBotones.add(ImageButton('pokedex.png', 75));
 
     return Scaffold(
-      appBar: AppBar(title: Text('Home Page')),
+//      appBar: AppBar(title: Text('Home Page')),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -23,8 +26,6 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            Container(alignment: Alignment.topRight,
-              child: TopRow('assets/trainers/' + 'trainer_1' + '.png')),
             Container(
                 height: 220,
                 child: Image.network(
@@ -35,11 +36,24 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-      /*floatingActionButton: FloatingActionButton(
-        //onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), */ // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: Container(
+        padding: EdgeInsets.fromLTRB(0, 13.0, 9.0, 0),
+        height: 100.0,
+        width: 100.0,
+        child: FittedBox(
+          child: FloatingActionButton(
+            onPressed: () {Navigator.pushNamed(context, UserSettingsRoute);},
+            child: CircleAvatar(
+              radius: 25,
+              backgroundImage: AssetImage(
+                'assets/trainers/' + 'trainer_1' + '.png',
+              ),
+            ),
+            backgroundColor: Colors.redAccent,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }
@@ -61,7 +75,8 @@ class BottomRow extends StatelessWidget {
   }
 }
 
-class TopRow extends StatelessWidget {
+
+/*class TopRow extends StatelessWidget {
   final String _imagen;
 
   TopRow(this._imagen);
@@ -85,3 +100,4 @@ class TopRow extends StatelessWidget {
     );
   }
 }
+*/
