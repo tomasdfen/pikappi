@@ -1,10 +1,10 @@
+import 'package:pikappi/prueba.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pikappi/Models/pokemon.dart';
 import 'package:pikappi/screens/details/details.dart';
 
 import '../../app.dart';
-
 
 class Pokedex extends StatelessWidget {
   @override
@@ -46,8 +46,9 @@ class PokedexCell extends StatelessWidget {
     cellColor = getTypeColor(p.types[0]);
     var elevatedButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: cellColor,
-      ),
+          primary: cellColor,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0))),
       child: Column(
         children: <Widget>[
           Flexible(
@@ -74,7 +75,13 @@ class PokedexCell extends StatelessWidget {
         height: SizeConfig.blockSizeVertical * 33,
         width: SizeConfig.blockSizeHorizontal * 33,
       ),
-      child: elevatedButton,
+      child: Padding(
+          padding: EdgeInsets.fromLTRB(
+              SizeConfig.blockSizeHorizontal * 2,
+              SizeConfig.blockSizeVertical * 1,
+              SizeConfig.blockSizeHorizontal * 2,
+              SizeConfig.blockSizeVertical * 1),
+          child: elevatedButton),
     ));
   }
 }

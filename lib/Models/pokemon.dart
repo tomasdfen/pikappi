@@ -247,7 +247,7 @@ Color getTypeColor(String type) {
 
     default:
       {
-        return Colors.white;
+        return Colors.brown[100];
       }
       break;
   }
