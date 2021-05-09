@@ -57,23 +57,29 @@ class _Settings extends State<Settings> {
     fontSize: 20.0,
   );
   //TODO maximo de tamaño del nombre
-  final con = getUser();
 
-  void showConsoleUsingPrint() {
-    print('con');
-
-  }
   final String foto = 'assets/trainers/trainer_1.png';
-  final String usuario = 'Juanlu Petite';
-
+  String usuario='aa';
+  Future<String> _usuario;
+  @override
+  void initState() {
+    _usuario = getUserName();
+    super.initState();
+  }
   bool rece = true;
 
   _onLocationTap(BuildContext context) {
-    Navigator.pushNamed(context, PokedexRoute);
+    Navigator.pushNamed(context, LocationsRoute);
   }
 
   @override
   Widget build(BuildContext context) {
+    getUserName().then((result) {
+      print(result);
+      setState(() {
+        usuario = result;
+      });
+    });
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(

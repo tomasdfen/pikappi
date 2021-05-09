@@ -6,7 +6,7 @@ import 'screens/home/home.dart';
 import 'screens/pokedex/pokedex.dart';
 import 'screens/settings/Settings.dart';
 
-const LocationsRoute = '/';
+const LocationsRoute = '/home';
 const LocationDetailRoute = '/location_detail';
 const PokedexRoute = '/pokedex';
 
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
       Widget screen;
       switch (settings.name) {
         case LocationsRoute:
-          //screen = Locations();
+          screen = Home();
           break;
         case LocationDetailRoute:
           //screen = LocationDetail(arguments['id']);
