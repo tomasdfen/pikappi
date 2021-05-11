@@ -50,12 +50,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "convert",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "1.17"
-    },
-    {
       "name": "crypto",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1",
       "packageUri": "lib/",
@@ -80,32 +74,32 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "flappy_search_bar",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flappy_search_bar-1.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.1"
-    },
-    {
       "name": "flutter",
       "rootUri": "file:///C:/src/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "flutter_staggered_grid_view",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_staggered_grid_view-0.3.4",
-      "packageUri": "lib/",
-      "languageVersion": "1.19"
-    },
-    {
       "name": "flutter_svg",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.19.3",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.21.0+1",
       "packageUri": "lib/",
-      "languageVersion": "2.2"
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_test",
       "rootUri": "file:///C:/src/flutter/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///C:/src/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "hexcolor",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/hexcolor-2.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -118,6 +112,12 @@
     {
       "name": "http_parser",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "js",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -165,15 +165,15 @@
     },
     {
       "name": "path_drawing",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1+1",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.0",
       "packageUri": "lib/",
-      "languageVersion": "1.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "path_parsing",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.2.0",
       "packageUri": "lib/",
-      "languageVersion": "1.19"
+      "languageVersion": "2.12"
     },
     {
       "name": "pedantic",
@@ -183,9 +183,9 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-3.1.0",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-4.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.12"
     },
     {
       "name": "pointycastle",
@@ -267,9 +267,9 @@
     },
     {
       "name": "xml",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/xml-4.5.1",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.12"
     },
     {
       "name": "pikappi",
@@ -278,7 +278,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-05-06T21:38:43.492144Z",
+  "generated": "2021-05-11T16:20:53.417702Z",
   "generator": "pub",
   "generatorVersion": "2.12.3"
 }
