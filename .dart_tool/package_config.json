@@ -134,6 +134,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_custom_clippers",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_clippers-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.22.0",
       "packageUri": "lib/",
@@ -148,6 +154,12 @@
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///D:/Programs%20Files/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-9.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -464,7 +476,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-05-04T16:51:42.923917Z",
+  "generated": "2021-05-12T20:42:33.857640Z",
   "generator": "pub",
   "generatorVersion": "2.12.1"
 }

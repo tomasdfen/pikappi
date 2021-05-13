@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:pikappi/screens/quiz/quizHome.dart';
+import 'package:pikappi/screens/settings/Settings.dart';
 import '../../Widgets/ImageButton.dart';
+import '../../Widgets/AlertButton.dart';
 import '../../Models/pokemon.dart';
 import '../../Widgets/ScreenSize.dart';
 import 'dart:math';
 import '../../app.dart';
-
+import 'dialog.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final List<ImageButton> listaBotones = [];
-    listaBotones.add(ImageButton('settings.png', 75));
-    listaBotones.add(ImageButton('pokeball.png', 123));
-    listaBotones.add(ImageButton('pokedex.png', 75));
-
     return Scaffold(
 //      appBar: AppBar(title: Text('Home Page')),
       body: Container(
@@ -32,7 +30,7 @@ class Home extends StatelessWidget {
                   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${Random().nextInt(151) + 1}.png",
                   fit: BoxFit.fill,
                 )),
-            BottomRow(listaBotones),
+            BottomRow(),
           ],
         ),
       ),
@@ -42,7 +40,9 @@ class Home extends StatelessWidget {
         width: 100.0,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: () {Navigator.pushNamed(context, LocationsRoute);},
+            onPressed: () {
+              Navigator.pushNamed(context, LocationsRoute);
+            },
             child: CircleAvatar(
               radius: 25,
               backgroundImage: AssetImage(
@@ -59,45 +59,28 @@ class Home extends StatelessWidget {
 }
 
 class BottomRow extends StatelessWidget {
-  final List<ImageButton> _list;
-
-  BottomRow(this._list);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(28.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[]..addAll(_list),
+        //children: <Widget>[]..addAll(_list),
+        children: <Widget>[
+          ImageButton('settings.png', 75, SettingsRoute, 'Settings'),
+          AlertButton('pokeball.png', 123),
+          ImageButton('pokedex.png', 75, PokedexRoute, 'Pokedex')
+        ],
       ),
     );
   }
 }
 
-
-/*class TopRow extends StatelessWidget {
-  final String _imagen;
-
-  TopRow(this._imagen);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(28.0),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            CircleAvatar(
-                radius: 45,
-                backgroundColor: Color(0xffff3030),
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage(_imagen),
-                  backgroundColor: Color(0xffffffff),
-                ))
-          ]),
-    );
-  }
+_alertDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return BeautifulAlertDialog();
+    },
+  );
 }
-*/

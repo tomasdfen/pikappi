@@ -2,19 +2,24 @@
 
 import 'package:flutter/material.dart';
 import 'package:pikappi/screens/home/home.dart';
+import 'package:pikappi/screens/quiz/quizHome.dart';
 import 'screens/home/home.dart';
+import 'screens/home/dialog.dart';
 import 'screens/pokedex/pokedex.dart';
 import 'screens/settings/Settings.dart';
+import 'screens/quiz/quiz_page.dart';
 
 const LocationsRoute = '/home';
 const LocationDetailRoute = '/location_detail';
 const PokedexRoute = '/pokedex';
+const SettingsRoute = '/settings';
+const QuizRoute = '/quiz';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Settings(),
+      home: Home(),
       onGenerateRoute: _routes(),
     );
   }
@@ -31,6 +36,12 @@ class App extends StatelessWidget {
           break;
         case PokedexRoute:
           screen = Pokedex();
+          break;
+        case QuizRoute:
+          screen = QuizHomePage();
+          break;
+        case SettingsRoute:
+          screen = Settings();
           break;
         default:
           return null;

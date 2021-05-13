@@ -37,12 +37,12 @@ class Settings extends StatelessWidget {
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'utils/settings_assets.dart';
+import 'utils/git_assets.dart';
 import 'utils/inlanding.dart';
 */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'utils/settings_assets.dart';
+import '../../Widgets/utils/git_assets.dart';
 import '../../app.dart';
 import '../../DataBase/connection.dart';
 
@@ -107,7 +107,7 @@ class _Settings extends State<Settings> {
                     children: <Widget>[
                       ListTile(
                         leading: CircleAvatar(
-                          backgroundImage: NetworkImage(foto),
+                          backgroundImage: AssetImage('assets/trainers/trainer_1.png'),
                           minRadius: 25,
                           maxRadius: 40,
                         ),
