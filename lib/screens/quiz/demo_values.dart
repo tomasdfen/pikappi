@@ -1,5 +1,6 @@
 //questions taken from https://opentdb.com
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pikappi/Models/pokemon.dart';
 
 import 'category.dart';
 import 'question.dart';
@@ -91,7 +92,7 @@ final List<Question> demoQuestions = Question.fromData([
       "Corrective Style Sheet",
       "Computer Style Sheet"
     ]
-  },
+  }/*,
   {
     "category": "Science: Computers",
     "type": "multiple",
@@ -149,5 +150,56 @@ final List<Question> demoQuestions = Question.fromData([
       "C",
       "Jakarta"
     ]
-  }
+  }*/
 ]);
+
+Future<List<Question>> createQuestions(Pokemon p) async{
+  Pokemon poke1 = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${34}/");
+  Pokemon poke2 = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${78}/");
+  Pokemon poke3 = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${134}/");
+
+
+  List<String> preguntas = [
+    "What type is this Pokemon?",
+    "Which of this abilities does this pokemon have?",
+    "What is the name of this Pokemon?",
+    "Is it an evolved pokemon?",
+    "Which of this movements does this pokemon have?"
+  ];
+  List<Map<String,dynamic>> data=[{
+    "category": "Science: Computers",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": preguntas[1],
+    "correct_answer": p.abilities[0],
+    "incorrect_answers": [
+      poke1.abilities[0],
+      poke2.abilities[0],
+      poke3.abilities[0],
+    ]
+  },{
+    "category": "Science: Computers",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": preguntas[2],
+    "correct_answer": p.name,
+    "incorrect_answers": [
+      poke1.name,
+      poke2.name,
+      poke3.name,
+    ]
+  },{
+    "category": "Science: Computers",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": preguntas[0],
+    "correct_answer": p.types[0],
+    "incorrect_answers": [
+      poke1.types[0],
+      poke2.types[0],
+      poke3.types[0],
+    ]
+  }];
+
+  return Question.fromData(data);
+}

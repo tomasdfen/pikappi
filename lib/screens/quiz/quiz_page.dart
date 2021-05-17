@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pikappi/Models/pokemon.dart';
 import 'category.dart';
 import 'question.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -8,8 +9,9 @@ class QuizPage extends StatefulWidget {
   static final String path = "lib/src/pages/quiz_app/quiz_page.dart";
   final List<Question> questions;
   final Category category;
+  final Pokemon pokemon;
 
-  const QuizPage({Key key, @required this.questions, this.category}) : super(key: key);
+  const QuizPage({Key key, @required this.questions, this.category, this.pokemon}) : super(key: key);
 
   @override
   _QuizPageState createState() => _QuizPageState();

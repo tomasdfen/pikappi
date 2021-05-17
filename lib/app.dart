@@ -61,6 +61,7 @@ class App extends StatelessWidget {
           break;
         case SettingsRoute:
           screen = Settings();
+          break;
         case UserSettingsRoute:
           screen = UserSettings();
           break;

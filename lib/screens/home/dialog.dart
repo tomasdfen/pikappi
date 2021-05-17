@@ -1,15 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:pikappi/Models/pokemon.dart';
 import 'package:pikappi/screens/quiz/quizHome.dart';
 import '../../Widgets/utils/network_image.dart';
 import '../../Widgets/utils/git_assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pikappi/screens/pokedex/pokedex.dart';
 import '../../app.dart';
 import '../quiz/question.dart';
 import '../quiz/demo_values.dart';
 import '../quiz/quiz_page.dart';
 import '../quiz/category.dart';
-
 
 class BeautifulAlertDialog extends StatefulWidget {
   @override
@@ -17,13 +18,35 @@ class BeautifulAlertDialog extends StatefulWidget {
 }
 
 class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
-
+  Pokemon p = Pokemon();
+  List<Question> questions;
   _onLocationTap(BuildContext context) {
     Navigator.pushNamed(context, QuizRoute);
   }
 
   @override
+  void setPokemon() {
+    if(mounted){
+    fetchPokemon("https://pokeapi.co/api/v2/pokemon/${2 + 1}/").then((value) {
+      setState(() {
+        p = value;
+      });
+    });
+  }}
+
+  @override
+  void setQuestions() {
+    if(mounted){
+    createQuestions(p).then((value) {
+      setState(() {
+        questions = value;
+      });
+    });
+  }}
+
+  @override
   Widget build(BuildContext context) {
+
     return Center(
       child: Dialog(
         elevation: 0,
@@ -58,8 +81,7 @@ class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
                     ),
                     SizedBox(height: 10.0),
                     Flexible(
-                      child: Text(
-                          "Wild Pokemon appeared, are you prepared?"),
+                      child: Text("Wild Pokemon appeared, are you prepared?"),
                     ),
                     SizedBox(height: 10.0),
                     Row(
@@ -84,7 +106,7 @@ class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
                             colorBrightness: Brightness.dark,
                             onPressed: () {
                               Navigator.pop(context);
-                              _startQuiz();
+                              _startQuiz(p, questions);
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
@@ -101,19 +123,17 @@ class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
       ),
     );
   }
-  void _startQuiz() async {
-    String usuario='aa';
 
-    FetchPokemon().then((result) {
-        print(result);
-        setState(() {
-          usuario = result;
-        });
-      });
-    List<Question> questions = demoQuestions;
+  void _startQuiz(Pokemon p, List<Question> questions) async {
     Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(
-        builder: (_) => QuizPage(questions: questions, category: Category(10,"Nombre Pokemon", icon: FontAwesomeIcons.bookOpen))
-    ));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => QuizPage(
+                questions: questions,
+                category: Category(
+                    10, '${p.name[0].toUpperCase()}${p.name.substring(1)}',
+                    icon: FontAwesomeIcons.bookOpen),
+                pokemon: p)));
   }
 }
