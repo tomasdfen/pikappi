@@ -60,12 +60,7 @@ class _Settings extends State<Settings> {
 
   final String foto = 'assets/trainers/trainer_1.png';
   String usuario='aa';
-  Future<String> _usuario;
-  @override
-  void initState() {
-    _usuario = getUserName();
-    super.initState();
-  }
+
   bool rece = true;
 
   _onLocationTap(BuildContext context) {

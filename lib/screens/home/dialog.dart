@@ -3,7 +3,7 @@ import 'package:pikappi/screens/quiz/quizHome.dart';
 import '../../Widgets/utils/network_image.dart';
 import '../../Widgets/utils/git_assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:pikappi/screens/pokedex/pokedex.dart';
 import '../../app.dart';
 import '../quiz/question.dart';
 import '../quiz/demo_values.dart';
@@ -102,10 +102,18 @@ class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
     );
   }
   void _startQuiz() async {
+    String usuario='aa';
+
+    FetchPokemon().then((result) {
+        print(result);
+        setState(() {
+          usuario = result;
+        });
+      });
     List<Question> questions = demoQuestions;
     Navigator.pop(context);
     Navigator.push(context, MaterialPageRoute(
-        builder: (_) => QuizPage(questions: questions, category: Category(10,"Books", icon: FontAwesomeIcons.bookOpen))
+        builder: (_) => QuizPage(questions: questions, category: Category(10,"Nombre Pokemon", icon: FontAwesomeIcons.bookOpen))
     ));
   }
 }

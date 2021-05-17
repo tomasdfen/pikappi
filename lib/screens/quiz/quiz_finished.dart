@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'question.dart';
 import 'check_answers.dart';
+import '../../app.dart';
 
 class QuizFinishedPage extends StatelessWidget {
   static final String path = "lib/src/pages/quiz_app/quiz_finished.dart";
@@ -106,8 +107,8 @@ class QuizFinishedPage extends StatelessWidget {
                     ),
                     color: Colors.pink.withOpacity(0.8),
                     textColor: Colors.white,
-                    child: Text("Goto Home"),
-                    onPressed: () => Navigator.pop(context),
+                    child: Text("Go to Home"),
+                    onPressed: () => Navigator.pushNamed(context, LocationsRoute),
                   ),
                   RaisedButton(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
