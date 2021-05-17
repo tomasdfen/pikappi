@@ -16,7 +16,7 @@ class UserSettings extends StatelessWidget {
   final Image entrenador2 =
       new Image.asset('assets/trainers/' + 'trainer_2' + '.png');
   final Image entrenador3 =
-      new Image.asset('assets/trainers/' + 'trainer_1' + '.png');
+      new Image.asset('assets/trainers/' + 'trainer_3' + '.png');
 
   @override
   Widget build(BuildContext context) {
