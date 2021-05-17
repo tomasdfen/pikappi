@@ -8,6 +8,7 @@ import '../../Widgets/ScreenSize.dart';
 import 'dart:math';
 import '../../app.dart';
 import 'dialog.dart';
+import '../settings/UserSettings.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -40,9 +41,7 @@ class Home extends StatelessWidget {
         width: 100.0,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: () {
-              Navigator.pushNamed(context, LocationsRoute);
-            },
+            onPressed: () {Navigator.pushNamed(context, UserSettingsRoute);},
             child: CircleAvatar(
               radius: 25,
               backgroundImage: AssetImage(
