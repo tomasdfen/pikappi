@@ -104,8 +104,8 @@ class _QuizPageState extends State<QuizPage> {
                           colorFilter:
                               ColorFilter.mode(Colors.black, BlendMode.modulate),
                           child: Image.network(
-                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${1}.png",
-                            height: 150,
+                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${widget.pokemon.number}.png",
+                            height: 100,
                             fit: BoxFit.fill,
                           ),
                         ),
