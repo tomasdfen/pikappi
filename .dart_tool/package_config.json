@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "get",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "hexcolor",
       "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/hexcolor-2.0.3",
       "packageUri": "lib/",
@@ -482,7 +488,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-05-17T16:23:28.738496Z",
+  "generated": "2021-05-18T11:41:27.741392Z",
   "generator": "pub",
   "generatorVersion": "2.12.1"
 }

@@ -11,38 +11,35 @@ import '../quiz/question.dart';
 import '../quiz/demo_values.dart';
 import '../quiz/quiz_page.dart';
 import '../quiz/category.dart';
-
 class BeautifulAlertDialog extends StatefulWidget {
   @override
   _BeautifulAlertDialog createState() => _BeautifulAlertDialog();
 }
 
 class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
-  Pokemon p = Pokemon();
-  List<Question> questions;
+
   _onLocationTap(BuildContext context) {
     Navigator.pushNamed(context, QuizRoute);
   }
 
-  @override
-  void setPokemon() {
-    if(mounted){
-    fetchPokemon("https://pokeapi.co/api/v2/pokemon/${2 + 1}/").then((value) {
-      setState(() {
-        p = value;
-      });
-    });
-  }}
+  _startQuiz() async {
+    Pokemon p = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${2 + 1}/").then((res) {
+      return res;});
+    List<Question> questions = await createQuestions(p).then((res) {
+      return res;});
 
-  @override
-  void setQuestions() {
-    if(mounted){
-    createQuestions(p).then((value) {
-      setState(() {
-        questions = value;
-      });
-    });
-  }}
+    Navigator.pop(context);
+    Navigator.of(context).push(
+        MaterialPageRoute(
+            builder: (_) =>
+                QuizPage(
+                    questions: questions,
+                    category: Category(
+                        10,
+                        '${p.name[0].toUpperCase()}${p.name.substring(1)}',
+                        icon: FontAwesomeIcons.bookOpen),
+                    pokemon: p)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +102,7 @@ class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
                             color: Colors.green,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
-                              Navigator.pop(context);
-                              _startQuiz(p, questions);
+                              _startQuiz();
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
@@ -124,16 +120,5 @@ class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
     );
   }
 
-  void _startQuiz(Pokemon p, List<Question> questions) async {
-    Navigator.pop(context);
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => QuizPage(
-                questions: questions,
-                category: Category(
-                    10, '${p.name[0].toUpperCase()}${p.name.substring(1)}',
-                    icon: FontAwesomeIcons.bookOpen),
-                pokemon: p)));
-  }
+
 }

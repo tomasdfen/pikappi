@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pikappi/Models/pokemon.dart';
 import 'question.dart';
 import 'check_answers.dart';
 import '../../app.dart';
@@ -7,13 +8,19 @@ class QuizFinishedPage extends StatelessWidget {
   static final String path = "lib/src/pages/quiz_app/quiz_finished.dart";
   final List<Question> questions;
   final Map<int, dynamic> answers;
+  final Pokemon pokemon;
 
-  QuizFinishedPage({Key key, @required this.questions, @required this.answers}): super(key: key) {
+  QuizFinishedPage({Key key, @required this.questions, @required this.answers, this.pokemon}): super(key: key) {
 
   }
 
   @override
   Widget build(BuildContext context){
+    var color1 = getTypeColor(pokemon.types[0]);
+    var color2 = getTypeColor(pokemon.types[0]);
+    if(getTypeColor(pokemon.types[1])!=null){
+      color2 = getTypeColor(pokemon.types[1]);
+    }
     int correct = 0;
     this.answers.forEach((index,value){
       if(this.questions[index].correctAnswer == value)
@@ -32,7 +39,7 @@ class QuizFinishedPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: getTypeColor(pokemon.types[0]),
         title: Text('Result'),
         elevation: 0,
       ),
@@ -42,8 +49,8 @@ class QuizFinishedPage extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Colors.deepPurple,
-                  Colors.pink
+                  getTypeColor(pokemon.types[0]),
+                  getTypeColor(pokemon.types[1])
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter
