@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "animated_background",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/animated_background-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "archive",
       "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2",
       "packageUri": "lib/",
@@ -15,7 +21,7 @@
     },
     {
       "name": "basic_utils",
-      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/basic_utils-3.0.2",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/basic_utils-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -105,7 +111,7 @@
     },
     {
       "name": "file",
-      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.0",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -129,7 +135,7 @@
     },
     {
       "name": "flutter_cache_manager",
-      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_cache_manager-3.0.1",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_cache_manager-3.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -249,13 +255,13 @@
     },
     {
       "name": "path_drawing",
-      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.0",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_parsing",
-      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.2.0",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -339,7 +345,7 @@
     },
     {
       "name": "rxdart",
-      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.26.0",
+      "rootUri": "file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -488,7 +494,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-05-18T11:41:27.741392Z",
+  "generated": "2021-05-19T19:10:23.358884Z",
   "generator": "pub",
   "generatorVersion": "2.12.1"
 }

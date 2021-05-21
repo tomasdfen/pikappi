@@ -1,6 +1,7 @@
 // app.dart
 
 import 'package:flutter/material.dart';
+import 'package:pikappi/screens/capture/capture.dart';
 import 'package:pikappi/screens/home/home.dart';
 import 'package:pikappi/screens/quiz/quizHome.dart';
 import 'screens/home/home.dart';
@@ -16,6 +17,7 @@ const PokedexRoute = '/pokedex';
 const SettingsRoute = '/settings';
 const QuizRoute = '/quiz';
 const UserSettingsRoute = '/usersettings';
+const CaptureRoute = '/capture';
 
 class SizeConfig {
   static MediaQueryData _mediaQueryData;
@@ -64,6 +66,9 @@ class App extends StatelessWidget {
           break;
         case UserSettingsRoute:
           screen = UserSettings();
+          break;
+        case CaptureRoute:
+          screen = CapturePokemon();
           break;
         default:
           return null;

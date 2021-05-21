@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:pikappi/Models/pokemon.dart';
 import '../../app.dart';
 import 'quizHome.dart';
 import 'question.dart';
@@ -8,14 +9,20 @@ class CheckAnswersPage extends StatelessWidget {
   static final String path = "lib/src/pages/quiz_app/check_answers.dart";
   final List<Question> questions;
   final Map<int,dynamic> answers;
+  final Pokemon pokemon;
 
-  const CheckAnswersPage({Key key, @required this.questions, @required this.answers}) : super(key: key);
+  const CheckAnswersPage({Key key, @required this.questions, @required this.answers, this.pokemon}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
+    var color1 = getTypeColor(pokemon.types[0]);
+    var color2 = getTypeColor(pokemon.types[0]);
+    if(pokemon.types.length>1){
+      color2 = getTypeColor(pokemon.types[1]);
+    }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: color1,
         title: Text('Check Answers'),
         elevation: 0,
       ),
@@ -25,7 +32,7 @@ class CheckAnswersPage extends StatelessWidget {
             clipper: WaveClipperTwo(),
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.deepPurple
+                  color: color1
               ),
               height: 200,
             ),
@@ -47,10 +54,10 @@ class CheckAnswersPage extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0)
         ),
-        color: Theme.of(context).primaryColor,
+        color: getTypeColor(pokemon.types[0]),
         textColor: Colors.white,
         onPressed: (){
-          Navigator.pushNamed(context, LocationsRoute);
+          Navigator.pop(context);
         },
       );
     }

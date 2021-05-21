@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pikappi/Models/pokemon.dart';
@@ -23,7 +24,7 @@ class _BeautifulAlertDialog extends State<BeautifulAlertDialog> {
   }
 
   _startQuiz() async {
-    Pokemon p = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${2 + 1}/").then((res) {
+    Pokemon p = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${Random().nextInt(150)+1}/").then((res) {
       return res;});
     List<Question> questions = await createQuestions(p).then((res) {
       return res;});
