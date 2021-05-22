@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:http/http.dart' as http;
 
 Map<String, int> pokemonIds = {
@@ -392,11 +393,21 @@ class Pokemon {
 }
 
 Future<Pokemon> fetchPokemon(String url) async {
+  final file = await DefaultCacheManager().getSingleFile(url);
+  print(file.readAsString());
+  String json_data = await file.readAsString();
   final response = await http.get(Uri.parse(url));
-  return parsePokemon(response.body);
+  return parsePokemon(json_data);
 }
 
-Pokemon parsePokemon(String responsebody) {
-  final parsed = jsonDecode(responsebody);
+Pokemon parsePokemon(String data) {
+  final parsed = jsonDecode(data);
   return Pokemon.fromJson(parsed);
 }
+
+// class PokemonManager {
+//   static Future<Pokemon> fetchPokemon(String url) async {
+//   final response = await http.get(Uri.parse(url));
+//   return parsePokemon(response.body);
+// }
+// }
