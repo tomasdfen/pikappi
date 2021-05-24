@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pikappi/Models/pokemon.dart';
+import 'package:pikappi/screens/capture/capture.dart';
 import 'question.dart';
 import 'check_answers.dart';
 import '../../app.dart';
@@ -10,15 +11,13 @@ class QuizFinishedPage extends StatelessWidget {
   final Map<int, dynamic> answers;
   final Pokemon pokemon;
 
-  QuizFinishedPage({Key key, @required this.questions, @required this.answers, this.pokemon}): super(key: key) {
-
-  }
+  QuizFinishedPage({Key key, @required this.questions, @required this.answers, this.pokemon}): super(key: key);
 
   @override
   Widget build(BuildContext context){
     var color1 = getTypeColor(pokemon.types[0]);
     var color2 = getTypeColor(pokemon.types[0]);
-    if(getTypeColor(pokemon.types[1])!=null){
+    if(pokemon.types.length>1){
       color2 = getTypeColor(pokemon.types[1]);
     }
     int correct = 0;
@@ -49,8 +48,8 @@ class QuizFinishedPage extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  getTypeColor(pokemon.types[0]),
-                  getTypeColor(pokemon.types[1])
+                  color1,
+                  color2
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter
@@ -78,7 +77,7 @@ class QuizFinishedPage extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text("Score", style: titleStyle),
-                  trailing: Text("${correct/questions.length * 100}%", style: trailingStyle),
+                  trailing: Text("${(correct/questions.length * 100).toStringAsFixed(2)}%", style: trailingStyle),
                 ),
               ),
               SizedBox(height: 10.0),
@@ -112,22 +111,27 @@ class QuizFinishedPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.pink.withOpacity(0.8),
+                    color: Colors.white,
                     textColor: Colors.white,
-                    child: Text("Go to Home"),
-                    onPressed: () => Navigator.pushNamed(context, LocationsRoute),
+                    child: Text("Capture Pokemon", style: titleStyle),
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (_) =>
+                                CapturePokemon(
+                                    answers: answers,
+                                    pokemon: pokemon))),
                   ),
                   RaisedButton(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.deepPurple.withOpacity(0.8),
-                    textColor: Colors.white,
-                    child: Text("Check Answers"),
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    child: Text("Check Answers", style: titleStyle),
                     onPressed: (){
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => CheckAnswersPage(questions: questions, answers: answers,)
+                          builder: (_) => CheckAnswersPage(questions: questions, answers: answers,pokemon:pokemon)
                       ));
                     },
                   ),
