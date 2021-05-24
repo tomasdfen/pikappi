@@ -46,9 +46,10 @@ import '../../Widgets/utils/git_assets.dart';
 import '../../app.dart';
 import '../../DataBase/connection.dart';
 
-class Settings extends StatefulWidget{
-  _Settings createState()=> _Settings();
+class Settings extends StatefulWidget {
+  _Settings createState() => _Settings();
 }
+
 class _Settings extends State<Settings> {
   static final String path = "lib/screens/settings/Settings.dart";
   final TextStyle headerStyle = TextStyle(
@@ -59,7 +60,7 @@ class _Settings extends State<Settings> {
   //TODO maximo de tamaño del nombre
 
   final String foto = 'assets/trainers/trainer_1.png';
-  String usuario='aa';
+  String usuario = 'aa';
 
   bool rece = true;
 
@@ -67,14 +68,18 @@ class _Settings extends State<Settings> {
     Navigator.pushNamed(context, LocationsRoute);
   }
 
-  @override
-  Widget build(BuildContext context) {
+  _getName() async {
     getUserName().then((result) {
       print(result);
       setState(() {
         usuario = result;
       });
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _getName();
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
@@ -102,13 +107,16 @@ class _Settings extends State<Settings> {
                     children: <Widget>[
                       ListTile(
                         leading: CircleAvatar(
-                          backgroundImage: AssetImage('assets/trainers/trainer_1.png'),
+                          backgroundImage:
+                              AssetImage('assets/trainers/trainer_1.png'),
                           minRadius: 25,
                           maxRadius: 40,
                         ),
                         title: Align(
-                          child: Text(usuario,
-                            style: TextStyle(fontSize: 20),),
+                          child: Text(
+                            usuario,
+                            style: TextStyle(fontSize: 20),
+                          ),
                           alignment: Alignment(0, 0),
                         ),
                         onTap: () => _onLocationTap(context),
