@@ -8,15 +8,20 @@ import '../../app.dart';
 class Details extends StatelessWidget {
   Pokemon pokemon;
   Color color;
-
+  Map<String, String> details = {};
   Details({
     this.pokemon,
     this.color,
   });
 
+  void fillDetails() {
+    this.details['desc'] = "Descripción del Pokemon";
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    this.fillDetails();
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -45,6 +50,16 @@ class Details extends StatelessWidget {
                   fontStyle: FontStyle.italic,
                   fontFamily: 'Open Sans',
                   fontSize: 40),
+            ),
+          ),
+          Center(
+            child: Text(
+              this.details['desc'],
+              style: TextStyle(
+                  color: Colors.grey[800],
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Open Sans',
+                  fontSize: 20),
             ),
           ),
           Center(
@@ -89,58 +104,141 @@ class Details extends StatelessWidget {
                         )
                       ]),
           ),
-          DataTable(
-              columnSpacing: SizeConfig.blockSizeHorizontal * 5,
-              dataRowHeight: SizeConfig.blockSizeVertical * 5,
-              headingRowHeight: SizeConfig.blockSizeVertical * 4,
-              columns: const <DataColumn>[
-                DataColumn(
-                  label: Text(
-                    'HP',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+            child: Table(children: <TableRow>[
+              TableRow(children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'HP: ${pokemon.hp}',
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.lightGreen),
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.transparent),
+                          animationDuration: Duration.zero,
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: Colors.transparent))))),
                 ),
-                DataColumn(
-                  label: Text(
-                    'Atk',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Attack: ${pokemon.atk}',
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.amber),
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.transparent),
+                          animationDuration: Duration.zero,
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: Colors.transparent))))),
                 ),
-                DataColumn(
-                  label: Text(
-                    'Def',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Defense: ${pokemon.def}',
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.blue),
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.transparent),
+                          animationDuration: Duration.zero,
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: Colors.transparent))))),
                 ),
-                DataColumn(
-                  label: Text(
-                    'Sp.Atk',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
+              ]),
+              TableRow(children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Sp. Attk: ${pokemon.spAtk}',
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.red[300]),
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.transparent),
+                          animationDuration: Duration.zero,
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: Colors.transparent))))),
                 ),
-                DataColumn(
-                  label: Text(
-                    'Sp.Def',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Sp. Def: ${pokemon.spAtk}',
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.amber[700]),
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.transparent),
+                          animationDuration: Duration.zero,
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: Colors.transparent))))),
                 ),
-                DataColumn(
-                  label: Text(
-                    'Spd',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
-                )
-              ],
-              rows: <DataRow>[
-                DataRow(cells: <DataCell>[
-                  DataCell(Text('${pokemon.hp}')),
-                  DataCell(Text('${pokemon.atk}')),
-                  DataCell(Text('${pokemon.def}')),
-                  DataCell(Text('${pokemon.spAtk}')),
-                  DataCell(Text('${pokemon.spDef}')),
-                  DataCell(Text('${pokemon.spd}')),
-                ])
-              ])
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Speed: ${pokemon.spd}',
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.lightBlue),
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.transparent),
+                          animationDuration: Duration.zero,
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: Colors.transparent))))),
+                ),
+              ]),
+            ]),
+          )
         ]));
   }
 }
