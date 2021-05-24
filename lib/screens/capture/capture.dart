@@ -18,47 +18,61 @@ class CapturePokemon extends StatefulWidget {
 
 class _CapturePokemon extends State<CapturePokemon>
     with TickerProviderStateMixin {
-  bool selected = false;
+  double height = 100;
+
   @override
   Widget build(BuildContext context) {
+    bool selected = false;
     return Scaffold(
       backgroundColor: Color.fromRGBO(38, 38, 38, 1),
       appBar: AppBar(title: Text('Home Page')),
       body: AnimatedBackground(
         behaviour: RandomParticleBehaviour(),
         vsync: this,
-        child: Align(
-            alignment: Alignment.center,
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                      height: 120,
-                      child: ColorFiltered(
-                        colorFilter:
-                            ColorFilter.mode(Colors.black, BlendMode.modulate),
-                        child: Image.network(
-                          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${Random().nextInt(151) + 1}.png",
-                          height: 100,
-                          fit: BoxFit.fill,
-                        ),
-                      )),
-                  Container(
-                      width: 250.0,
-                      height: 250.0,
-                      child: AnimatedAlign(
-                        alignment: selected
-                            ? Alignment.topRight
-                            : Alignment.bottomLeft,
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.fastOutSlowIn,
-                        child: const FlutterLogo(size: 50.0),
-                      )),
-                  //BottomRow(),
-                ],
-              ),
-            )),
+        child: Stack(
+          children: [
+            Align(
+                alignment: Alignment.center,
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          height: 120,
+                          child: ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                                Colors.black, BlendMode.modulate),
+                            child: Image.network(
+                              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${widget.pokemon.number}.png",
+                              height: 100,
+                              fit: BoxFit.fill,
+                            ),
+                          )),
+                    ],
+                  ),
+                )),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  height: height,
+                  width: height,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.transparent, // background// foreground
+                      ),
+                    child: Container(
+                        color: Colors.transparent,
+                        child: Image.asset("assets/images/pokeball.png")),
+                    onPressed: () =>
+                        setState(() => height = height == 100 ? 200 : 100),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
