@@ -184,7 +184,7 @@ Future<List<Question>> createQuestions(Pokemon p) async {
 
   List<dynamic> abilities = p.abilities;
 
-  var pokemonNumbers = new List<int>.generate(151, (i) => i);
+  var pokemonNumbers = new List<int>.generate(150, (i) => i+1);
   pokemonNumbers.remove(p.number);
 
   List<Pokemon> randomPokemon = [];
