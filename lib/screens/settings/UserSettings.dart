@@ -349,10 +349,14 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
-                                      setState(() {
-                                        perfil = entrenador1;
-                                        num_entr = updateUserTrainer("0") as String;
-                                      });
+                                      updateUserTrainer("0").then((n)=>(setState(() {
+                                        perfil =  Image.asset(
+                                            'assets/trainers/' +
+                                                '0' +
+                                                '.png',fit: BoxFit.contain);
+                                        num_entr = n;
+                                      })));
+
                                     },
                                     child: ClipRRect(
                                       child: Image.asset(
@@ -366,10 +370,14 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
-                                      setState(() {
-                                        perfil = entrenador2;
-                                        num_entr = updateUserTrainer("1") as String;
-                                      });
+                                      updateUserTrainer("1").then((n)=>(setState(() {
+                                        perfil =  Image.asset(
+                                            'assets/trainers/' +
+                                                '1' +
+                                                '.png',fit: BoxFit.contain);
+                                        num_entr = n;
+                                      })));
+
                                     },
                                     child: ClipRRect(
                                       child: Image.asset(
@@ -383,10 +391,14 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
-                                      setState(() {
-                                        perfil = entrenador3;
-                                        num_entr = updateUserTrainer("2") as String;
-                                      });
+                                      updateUserTrainer("2").then((n)=>(setState(() {
+                                        perfil =  Image.asset(
+                                            'assets/trainers/' +
+                                                '2' +
+                                                '.png',fit: BoxFit.contain);
+                                        num_entr = n;
+                                      })));
+
                                     },
                                     child: Container(
                                       child: Image.asset(
@@ -557,36 +569,6 @@ class _DatePickerDemoState extends State<DatePickerDemo> {
 }
 
 
-class FotoPerfil extends StatefulWidget {
-  @override
-  _FotoPerfil createState() => _FotoPerfilState();
-
-  Image foto = Image.asset('assets/trainers/' + '0' + '.png', fit: BoxFit.contain);
-  SetFoto =
-
-}
-
-class _FotoPerfil {
-
-  Widget build(BuildContext context) {
-    getUser().then((result) {
-      setState(() {
-        selectedDate = result['birthday'];
-      });
-    });
-
-    return void;
-
-}
-
-class _FotoPerfilState extends State<FotoPerfil> {
-  @override
-  Widget build(BuildContext context) {
-    getUser().then((result) {
-      setState(() {
-        selectedDate = result['birthday'];
-      });
-    });
 
 /*
 El layout estará compuesto por un body de una única columna donde dentro habrá 3 containers
