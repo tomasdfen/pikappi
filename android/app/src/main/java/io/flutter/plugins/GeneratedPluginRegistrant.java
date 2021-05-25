@@ -16,8 +16,6 @@ public final class GeneratedPluginRegistrant {
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
       com.ggichure.github.hexcolor.HexcolorPlugin.registerWith(shimPluginRegistry.registrarFor("com.ggichure.github.hexcolor.HexcolorPlugin"));
-    flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());
-    flutterEngine.getPlugins().add(new com.tekartik.sqflite.SqflitePlugin());
-    flutterEngine.getPlugins().add(new io.flutter.plugins.urllauncher.UrlLauncherPlugin());
+    flutterEngine.getPlugins().add(new io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin());
   }
 }
