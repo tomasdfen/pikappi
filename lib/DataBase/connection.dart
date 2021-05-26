@@ -76,8 +76,6 @@ Future<String> updateUserGender(String gender) async {
 }
 Future<DateTime> updateUserBirthday(DateTime date) async {
   print("Ubuntu");
-
-  updateFavPokemon(int fav) async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
@@ -85,14 +83,35 @@ Future<DateTime> updateUserBirthday(DateTime date) async {
   print('>> Updating User');
   var collection = db.collection('user');
 
-  collection.updateOne(where.eq('_id', 'usuario'), modify.set('birthday', date));
+  collection.updateOne(
+      where.eq('_id', 'usuario'), modify.set('birthday', date));
 
   await db.close();
   return date;
 }
-
 Future<String> updateUserTrainer(String trainer) async {
   print("Ubuntu");
+  var db = await Db.create(
+      "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
+  await db.open();
+  print('====================================================================');
+  print('>> Updating User');
+  var collection = db.collection('user');
+
+  collection.updateOne(where.eq('_id', 'usuario'), modify.set('trainer', trainer));
+
+  await db.close();
+  return trainer;
+}
+
+updateFavPokemon(int fav) async {
+  var db = await Db.create(
+      "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
+  await db.open();
+  print('====================================================================');
+  print('>> Updating User');
+  var collection = db.collection('user');
+
   collection.updateOne(
       where.eq('_id', 'usuario'), modify.set('fav_pokemon', fav));
 
@@ -107,14 +126,8 @@ Future<List<dynamic>> getPokemonList() async {
   print('====================================================================');
   print('>> Updating User');
   var collection = db.collection('user');
-
-  collection.updateOne(where.eq('_id', 'usuario'), modify.set('trainer', trainer));
-
-  await db.close();
-  return trainer;
-}
   var temp =
-      await collection.findOne(where.eq("_id", 'usuario').fields(['captured']));
+  await collection.findOne(where.eq("_id", 'usuario').fields(['captured']));
   var captured = temp['captured'];
   await db.close();
   return captured;
