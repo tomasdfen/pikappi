@@ -11,19 +11,15 @@ import 'dart:math';
 import '../../app.dart';
 import '../home/home.dart';
 
-String num_entr = "0";
+
 
 class UserSettings extends StatefulWidget {
   _UserSettings createState() => _UserSettings();
 }
+String num_entr = '0';
+String name = 'Nombre Entrenador';
 
 class _UserSettings extends State<UserSettings> {
-  Image entrenador1 =
-  Image.asset('assets/trainers/' + '0' + '.png');
-  Image entrenador2 =
-  Image.asset('assets/trainers/' + '1' + '.png');
-  Image entrenador3 =
-  Image.asset('assets/trainers/' + '2' + '.png');
 
 
 
@@ -31,13 +27,17 @@ class _UserSettings extends State<UserSettings> {
   Widget build(BuildContext context) {
     getUser().then((result) {
        num_entr = result['trainer'];
+       name = result['name'];
     });
 
-    Image perfil = Image.asset('assets/trainers/'"$num_entr"'.png', fit: BoxFit.contain);
+    Image perfil = Image.asset('assets/trainers/' + num_entr + '.png', fit: BoxFit.contain);
 
     return Scaffold(
       backgroundColor: HexColor("DAF6FF"),
-      body: Container(
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+    child:Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
 
           child: Column(
@@ -88,6 +88,7 @@ class _UserSettings extends State<UserSettings> {
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         color: HexColor("ffffff")),
                     child: Column(
+
                       children: <Widget>[
                         Container(
                           child: FractionallySizedBox(
@@ -103,7 +104,20 @@ class _UserSettings extends State<UserSettings> {
                                   color: HexColor("DAF6FF")),
                               child: Container(
                                   child:
-                                  Center(child: Text("Nombre Entrenador"))),
+                                  Center(
+                                      child: TextField(
+                                        controller: TextEditingController()..text= name,
+                                        maxLines: 1,
+                                        autocorrect: false,
+                                        enableSuggestions: false,
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.visiblePassword,
+                                        decoration: InputDecoration( border: InputBorder.none, hintText: "Nombre Entrenador", contentPadding: EdgeInsets.all(8)),
+                                    onChanged: (text){
+                                          TextEditingController()..text= name;
+                                      updateUserName(text);
+                                    },
+                                  ))),
 
                               height: MediaQuery.of(context).size.width * 0.05,
                             ),
@@ -349,20 +363,16 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
-                                      updateUserTrainer("0").then((n)=>(setState(() {
+                                      updateUserTrainer('0').then((n)=>(setState(() {
                                         perfil =  Image.asset(
-                                            'assets/trainers/' +
-                                                '0' +
-                                                '.png',fit: BoxFit.contain);
+                                            'assets/trainers/0.png',fit: BoxFit.contain);
                                         num_entr = n;
                                       })));
 
                                     },
                                     child: ClipRRect(
                                       child: Image.asset(
-                                          'assets/trainers/' +
-                                              '0' +
-                                              '.png',fit: BoxFit.contain),
+                                          'assets/trainers/0.png',fit: BoxFit.contain),
                                     ),
                                   ),
                                 ),
@@ -370,20 +380,16 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
-                                      updateUserTrainer("1").then((n)=>(setState(() {
+                                      updateUserTrainer('1').then((n)=>(setState(() {
                                         perfil =  Image.asset(
-                                            'assets/trainers/' +
-                                                '1' +
-                                                '.png',fit: BoxFit.contain);
+                                            'assets/trainers/1.png',fit: BoxFit.contain);
                                         num_entr = n;
                                       })));
 
                                     },
                                     child: ClipRRect(
                                       child: Image.asset(
-                                          'assets/trainers/' +
-                                              '1' +
-                                              '.png',fit: BoxFit.contain),
+                                          'assets/trainers/1.png',fit: BoxFit.contain),
                                     ),
                                   ),
                                 ),
@@ -391,20 +397,16 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
-                                      updateUserTrainer("2").then((n)=>(setState(() {
+                                      updateUserTrainer('2').then((n)=>(setState(() {
                                         perfil =  Image.asset(
-                                            'assets/trainers/' +
-                                                '2' +
-                                                '.png',fit: BoxFit.contain);
+                                            'assets/trainers/2.png',fit: BoxFit.contain);
                                         num_entr = n;
                                       })));
 
                                     },
                                     child: Container(
                                       child: Image.asset(
-                                          'assets/trainers/' +
-                                              '2' +
-                                              '.png',fit: BoxFit.contain),
+                                          'assets/trainers/2.png',fit: BoxFit.contain),
                                     ),
                                   ),
                                 ),
@@ -434,7 +436,7 @@ class _UserSettings extends State<UserSettings> {
               ),
             ],
           )),
-    );
+    )));
   }
 }
 
@@ -460,37 +462,37 @@ class _GenderSelectorState extends State<GenderSelector> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           GestureDetector(
-            onTap: () { setState(() { _value = updateUserGender("femenine") as String; } );},
+            onTap: () { setState(() {updateUserGender('femenine'); } );},
             child: Container(
               height: 56,
               width: 56,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: _value == "femenine" ? Colors.pinkAccent : Colors.transparent,
+                color: _value == 'femenine' ? Colors.pinkAccent : Colors.transparent,
               ),
               child: Icon(Mdi.genderFemale),
             ),
           ),
           GestureDetector(
-            onTap: () { setState(() { _value = updateUserGender("masculine") as String; } );},
+            onTap: () { setState(() { updateUserGender('masculine'); } );},
             child: Container(
               height: 56,
               width: 56,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: _value == "masculine" ? Colors.blueAccent : Colors.transparent,
+                color: _value == 'masculine' ? Colors.blueAccent : Colors.transparent,
               ),
               child: Icon(Mdi.genderMale),
             ),
           ),
           GestureDetector(
-            onTap: () { setState(() { _value = updateUserGender("nonbinary") as String; } );},
+            onTap: () { setState(() { updateUserGender('nonbinary'); } );},
             child: Container(
               height: 56,
               width: 56,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: _value == "nonbinary" ? Colors.brown : Colors.transparent,
+                color: _value == 'nonbinary' ? Colors.brown : Colors.transparent,
               ),
               child: Icon(Mdi.genderNonBinary),
             ),
@@ -524,11 +526,15 @@ class _DatePickerDemoState extends State<DatePickerDemo> {
       firstDate: DateTime(1920),
       lastDate: DateTime(2022),
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate){
+      if (mounted){
       setState(() {
         selectedDate = picked;
         updateUserBirthday(picked);
+
       });
+      }
+    }
   }
 
 

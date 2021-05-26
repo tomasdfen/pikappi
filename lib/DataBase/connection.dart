@@ -18,6 +18,7 @@ Future<Map<String, dynamic>> getUser() async {
     map['gender'] = v['gender'];
     map['birthday'] = v['birthday'];
     map['fav_pokemon'] = v['fav_pokemon'];
+    map['trainer'] = v['trainer'];
   });
   await db.close();
   return map;
@@ -40,11 +41,25 @@ Future<String> getUserName() async {
     map['gender'] = v['gender'];
     map['birthday'] = v['birthday'];
     map['fav_pokemon'] = v['fav_pokemon'];
+    map['trainer'] = v['trainer'];
   });
   await db.close();
   return map['name'];
 }
+Future<String> updateUserName(String name) async {
+  print("Ubuntu");
+  var db = await Db.create(
+      "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
+  await db.open();
+  print('====================================================================');
+  print('>> Updating User');
+  var collection = db.collection('user');
 
+  collection.updateOne(where.eq('_id', 'usuario'), modify.set('name', name));
+
+  await db.close();
+  return "Changed gender to " + name;
+}
 Future<String> updateUserGender(String gender) async {
   print("Ubuntu");
   var db = await Db.create(
