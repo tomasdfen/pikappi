@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:mdi/mdi.dart';
 import 'package:intl/intl.dart';
 import '../../DataBase/connection.dart';
-import '../../Widgets/ImageButton.dart';
 import '../../Models/pokemon.dart';
 import '../../Widgets/ScreenSize.dart';
 import 'dart:math';
@@ -262,10 +262,8 @@ class _UserSettings extends State<UserSettings> {
                                               Row(
                                                 children: <Widget>[
                                                   Expanded(
-                                                    child: Center(
-                                                      child: Text(
-                                                          "1 Grid central con el poke"),
-                                                    ),
+                                                    flex:9,
+                                                    child: FavoritePokemon()
                                                   )
                                                 ],
                                               ),
@@ -573,9 +571,54 @@ class _DatePickerDemoState extends State<DatePickerDemo> {
     );
   }
 }
+String _favPokeSprite = "";
+
+Future<String> more() async {
+  int favnumber = await getFavPokemon();
+  Pokemon poke = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${favnumber + 1}/");
+  return poke.getPrettySprite();
+}
 
 
 
+
+
+class FavoritePokemon extends StatefulWidget {
+  _FavoritePokemonState createState() => _FavoritePokemonState();
+}
+
+class _FavoritePokemonState extends State<FavoritePokemon> {
+  @override
+  Widget build(BuildContext context) {
+    getUser().then((result) {
+      setState(()  async {
+        _favPokeSprite = await more();
+      });
+    });
+
+    return Center(
+        child: Container(
+            width: 70,
+            height: 70,
+            child:GridView.count(
+                childAspectRatio: 1.0,
+                padding: EdgeInsets.only(left: 5, right: 5),
+                crossAxisCount: 1,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                children: [
+                  Material(
+                      child: SvgPicture.network(
+                          _favPokeSprite,
+                          height: 30,
+                          width: 30
+                      )
+                  ),
+                ])
+        )
+    );
+  }
+}
 /*
 El layout estará compuesto por un body de una única columna donde dentro habrá 3 containers
 que dividen horizontalmente las 3 partes principales de esta ventana, dentro de cada container
