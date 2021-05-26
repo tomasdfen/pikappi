@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:http/http.dart' as http;
 
 Map<String, int> pokemonIds = {
@@ -277,6 +278,7 @@ enum Type {
 class Pokemon {
   String name;
   int number;
+  String desc;
   List<dynamic> types;
   String sprite;
   String prettySprite;
@@ -353,7 +355,7 @@ class Pokemon {
 
   factory Pokemon.fromJson(dynamic data) {
     var pokemon = Pokemon(
-      name: data["name"] as String,
+      name: '${data["name"][0].toUpperCase()}${data["name"].substring(1)}',
       number: data["id"] as int,
       types: (data['types'].length == 2)
           ? [
@@ -374,17 +376,17 @@ class Pokemon {
       spd: data['stats'][5]['base_stat'] as int,
       abilities: (data['abilities'].length == 3)
           ? [
-              data['abilities'][0]['ability']['name'],
-              data['abilities'][1]['ability']['name'],
-              data['abilities'][2]['ability']['name']
+              '${data['abilities'][0]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
+              '${data['abilities'][1]['ability']['name'][0].toUpperCase()}${data['abilities'][1]['ability']['name'].substring(1)}',
+              '${data['abilities'][2]['ability']['name'][0].toUpperCase()}${data['abilities'][2]['ability']['name'].substring(1)}',
             ] as List<dynamic>
           : (data['abilities'].length == 2)
               ? [
-                  data['abilities'][0]['ability']['name'],
-                  data['abilities'][1]['ability']['name'],
+                  '${data['abilities'][0]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
+                  '${data['abilities'][1]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
                 ] as List<dynamic>
               : [
-                  data['abilities'][0]['ability']['name'],
+                  '${data['abilities'][0]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
                 ] as List<dynamic>,
     );
     return pokemon;
@@ -392,11 +394,21 @@ class Pokemon {
 }
 
 Future<Pokemon> fetchPokemon(String url) async {
-  final response = await http.get(Uri.parse(url));
-  return parsePokemon(response.body);
+  final file = await DefaultCacheManager().getSingleFile(url);
+  String jsonData = await file.readAsString();
+  return parsePokemon(jsonData);
 }
 
-Pokemon parsePokemon(String responsebody) {
-  final parsed = jsonDecode(responsebody);
+Pokemon parsePokemon(String data) {
+  final parsed = jsonDecode(data);
   return Pokemon.fromJson(parsed);
 }
+
+Future<String> fetchPokemonDesc(int number) async {
+  String url = "https://pokeapi.co/api/v2/pokemon-species/$number/";
+  final file = await DefaultCacheManager().getSingleFile(url);
+  String jsonData = await file.readAsString();
+  final json = jsonDecode(jsonData);
+  return json['flavor_text_entries'][26]['flavor_text'];
+}
+

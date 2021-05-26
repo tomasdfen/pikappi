@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pikappi/DataBase/connection.dart';
 import 'package:pikappi/Models/pokemon.dart';
 import 'package:pikappi/screens/details/details.dart';
 
 import '../../app.dart';
 
-class Pokedex extends StatelessWidget {
+class PokedexView extends StatelessWidget {
+  List<dynamic> captured;
+
+  Future loadData() async {
+    var data = getPokemonList();
+    return data;
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    final title = "Pokedex";
+    return FutureBuilder(
+        future: loadData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
+
+          return snapshot.hasData
+              ? Pokedex(captured: snapshot.data)
+              : Center(
+                  child: Image.asset(
+                  "assets/images/pikachu.gif",
+                  height: 125.0,
+                  width: 125.0,
+                ));
+        });
+  }
+}
+
+class Pokedex extends StatelessWidget {
+  final title = "Pokedex";
+  List<dynamic> captured;
+  Pokedex({Key key, this.captured}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    print(captured);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -17,7 +48,9 @@ class Pokedex extends StatelessWidget {
       ),
       body: GridView.count(
         crossAxisCount: 3,
-        children: List.generate(151, (index) {
+        children: List.generate(150, (index) {
+          bool show = captured.contains(index);
+          print(show);
           return FutureBuilder(
               future: fetchPokemon(
                   "https://pokeapi.co/api/v2/pokemon/${index + 1}/"),
@@ -25,7 +58,7 @@ class Pokedex extends StatelessWidget {
                 if (snapshot.hasError) print(snapshot.error);
 
                 return snapshot.hasData
-                    ? PokedexCell(p: snapshot.data)
+                    ? PokedexCell(p: snapshot.data, show: show)
                     : Center(child: CircularProgressIndicator());
               });
         }),
@@ -37,8 +70,9 @@ class Pokedex extends StatelessWidget {
 class PokedexCell extends StatelessWidget {
   final Pokemon p;
   var cellColor;
+  bool show;
 
-  PokedexCell({Key key, this.p}) : super(key: key);
+  PokedexCell({Key key, this.p, this.show}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,17 +90,23 @@ class PokedexCell extends StatelessWidget {
               p.getPrettySprite,
               height: SizeConfig.blockSizeVertical * 30,
               width: SizeConfig.blockSizeHorizontal * 30,
+              color: this.show ? null : Colors.black,
             ),
           ),
-          Text('${p.name[0].toUpperCase()}${p.name.substring(1)}'),
+          Text(this.show
+              ? '${p.name[0].toUpperCase()}${p.name.substring(1)}'
+              : '???'),
         ],
       ),
-      onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Details(pokemon: p, color: cellColor)));
-      },
+      onPressed: this.show
+          ? () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Details(pokemon: p, color: cellColor)));
+            }
+          : null,
     );
     return Center(
         child: ConstrainedBox(

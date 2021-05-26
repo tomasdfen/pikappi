@@ -39,6 +39,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          hoverColor: Colors.transparent),
       home: Home(),
       onGenerateRoute: _routes(),
     );
@@ -56,7 +60,7 @@ class App extends StatelessWidget {
           //screen = LocationDetail(arguments['id']);
           break;
         case PokedexRoute:
-          screen = Pokedex();
+          screen = PokedexView();
           break;
         case QuizRoute:
           screen = QuizHomePage();
