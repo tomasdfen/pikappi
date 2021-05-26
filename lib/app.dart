@@ -60,7 +60,7 @@ class App extends StatelessWidget {
           //screen = LocationDetail(arguments['id']);
           break;
         case PokedexRoute:
-          screen = Pokedex();
+          screen = PokedexView();
           break;
         case QuizRoute:
           screen = QuizHomePage();

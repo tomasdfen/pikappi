@@ -355,7 +355,7 @@ class Pokemon {
 
   factory Pokemon.fromJson(dynamic data) {
     var pokemon = Pokemon(
-      name: data["name"] as String,
+      name: '${data["name"][0].toUpperCase()}${data["name"].substring(1)}',
       number: data["id"] as int,
       types: (data['types'].length == 2)
           ? [
@@ -376,17 +376,17 @@ class Pokemon {
       spd: data['stats'][5]['base_stat'] as int,
       abilities: (data['abilities'].length == 3)
           ? [
-              data['abilities'][0]['ability']['name'],
-              data['abilities'][1]['ability']['name'],
-              data['abilities'][2]['ability']['name']
+              '${data['abilities'][0]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
+              '${data['abilities'][1]['ability']['name'][0].toUpperCase()}${data['abilities'][1]['ability']['name'].substring(1)}',
+              '${data['abilities'][2]['ability']['name'][0].toUpperCase()}${data['abilities'][2]['ability']['name'].substring(1)}',
             ] as List<dynamic>
           : (data['abilities'].length == 2)
               ? [
-                  data['abilities'][0]['ability']['name'],
-                  data['abilities'][1]['ability']['name'],
+                  '${data['abilities'][0]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
+                  '${data['abilities'][1]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
                 ] as List<dynamic>
               : [
-                  data['abilities'][0]['ability']['name'],
+                  '${data['abilities'][0]['ability']['name'][0].toUpperCase()}${data['abilities'][0]['ability']['name'].substring(1)}',
                 ] as List<dynamic>,
     );
     return pokemon;

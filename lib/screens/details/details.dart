@@ -1,9 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pikappi/DataBase/connection.dart';
 import 'package:pikappi/Models/pokemon.dart';
 
 import '../../app.dart';
+
+void _showToast(BuildContext context, Pokemon p) {
+  final scaffold = ScaffoldMessenger.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content: Text('${p.name} es tu nuevo Pokémon favorito'),
+    ),
+  );
+}
 
 class Details extends StatelessWidget {
   Pokemon pokemon;
@@ -238,6 +248,22 @@ class Details extends StatelessWidget {
                 ),
               ]),
             ]),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: FloatingActionButton(
+                  child: const Icon(Icons.favorite_border),
+                  onPressed: () {
+                    _showToast(context, pokemon);
+                    updateFavPokemon(this.pokemon.number);
+                  },
+                  backgroundColor: Colors.pink,
+                ),
+              )
+            ],
           )
         ]));
   }
