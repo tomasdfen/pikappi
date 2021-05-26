@@ -74,12 +74,3 @@ class BottomRow extends StatelessWidget {
     );
   }
 }
-
-_alertDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return BeautifulAlertDialog();
-    },
-  );
-}

@@ -1,16 +1,16 @@
 import 'dart:math';
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
-import 'package:imagebutton/imagebutton.dart';
 import 'package:pikappi/Models/pokemon.dart';
-import '../../app.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'dialogCapture.dart';
+
 class CapturePokemon extends StatefulWidget {
-  final Map<int, dynamic> answers;
+  final double percentage;
   final Pokemon pokemon;
 
-  CapturePokemon({Key key, @required this.answers, this.pokemon})
+  CapturePokemon({Key key, @required this.percentage, this.pokemon})
       : super(key: key);
 
   @override
@@ -38,6 +38,9 @@ class _CapturePokemon extends State<CapturePokemon>
         res = true;
         height = 20;
         width = 20;
+        Future.delayed(const Duration(milliseconds: 1800), () {
+          _alertDialog(context);
+        });
       });
     } else {
       setState(() {
@@ -52,6 +55,31 @@ class _CapturePokemon extends State<CapturePokemon>
     }
   }
 
+  _alertDialog(BuildContext context) {
+    var a = Random().nextInt(100);
+    print(a);
+    print(a < widget.percentage);
+
+    bool resulta = a < widget.percentage;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CaptureAlertDialog(result: resulta, pokemon: widget.pokemon);
+      },
+    );
+  }
+
+  //Reloj
+  AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 5),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     bool selected = false;
