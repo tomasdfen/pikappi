@@ -18,6 +18,7 @@ Future<Map<String, dynamic>> getUser() async {
     map['gender'] = v['gender'];
     map['birthday'] = v['birthday'];
     map['fav_pokemon'] = v['fav_pokemon'];
+    map['trainer'] = v['trainer'];
     map['captured'] = v['captured'];
   });
   await db.close();
@@ -40,11 +41,25 @@ Future<String> getUserName() async {
     map['gender'] = v['gender'];
     map['birthday'] = v['birthday'];
     map['fav_pokemon'] = v['fav_pokemon'];
+    map['trainer'] = v['trainer'];
   });
   await db.close();
   return map['name'];
 }
+Future<String> updateUserName(String name) async {
+  print("Ubuntu");
+  var db = await Db.create(
+      "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
+  await db.open();
+  print('====================================================================');
+  print('>> Updating User');
+  var collection = db.collection('user');
 
+  collection.updateOne(where.eq('_id', 'usuario'), modify.set('name', name));
+
+  await db.close();
+  return "Changed gender to " + name;
+}
 Future<String> updateUserGender(String gender) async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
@@ -59,8 +74,37 @@ Future<String> updateUserGender(String gender) async {
   await db.close();
   return "Changed gender to " + gender;
 }
+Future<DateTime> updateUserBirthday(DateTime date) async {
+  print("Ubuntu");
+  var db = await Db.create(
+      "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
+  await db.open();
+  print('====================================================================');
+  print('>> Updating User');
+  var collection = db.collection('user');
 
-  updateFavPokemon(int fav) async {
+  collection.updateOne(
+      where.eq('_id', 'usuario'), modify.set('birthday', date));
+
+  await db.close();
+  return date;
+}
+Future<String> updateUserTrainer(String trainer) async {
+  print("Ubuntu");
+  var db = await Db.create(
+      "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
+  await db.open();
+  print('====================================================================');
+  print('>> Updating User');
+  var collection = db.collection('user');
+
+  collection.updateOne(where.eq('_id', 'usuario'), modify.set('trainer', trainer));
+
+  await db.close();
+  return trainer;
+}
+
+updateFavPokemon(int fav) async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
@@ -104,7 +148,7 @@ Future<List<dynamic>> getPokemonList() async {
   print('>> Updating User');
   var collection = db.collection('user');
   var temp =
-      await collection.findOne(where.eq("_id", 'usuario').fields(['captured']));
+  await collection.findOne(where.eq("_id", 'usuario').fields(['captured']));
   var captured = temp['captured'];
   await db.close();
   return captured;

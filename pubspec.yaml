@@ -42,6 +42,7 @@ dependencies:
   flutter_custom_clippers: ^1.1.2
   font_awesome_flutter: ^9.0.0
   get: ^4.1.4
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -63,8 +64,10 @@ flutter:
     - assets/images/
     - assets/images/pokeball.png
     - assets/trainers/trainer_1.png
-    - assets/trainers/trainer_2.png
-    - assets/trainers/trainer_3.png
+    - assets/trainers/0.png
+    - assets/trainers/1.png
+    - assets/trainers/2.png
+
     #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

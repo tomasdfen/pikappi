@@ -46,9 +46,11 @@ import '../../Widgets/utils/git_assets.dart';
 import '../../app.dart';
 import '../../DataBase/connection.dart';
 
-class Settings extends StatefulWidget {
-  _Settings createState() => _Settings();
+class Settings extends StatefulWidget{
+  _Settings createState()=> _Settings();
 }
+String usuario='aa';
+String num_entr = '0';
 
 class _Settings extends State<Settings> {
   static final String path = "lib/screens/settings/Settings.dart";
@@ -60,7 +62,6 @@ class _Settings extends State<Settings> {
   //TODO maximo de tamaño del nombre
 
   final String foto = 'assets/trainers/trainer_1.png';
-  String usuario = 'aa';
 
   bool rece = true;
 
@@ -68,18 +69,14 @@ class _Settings extends State<Settings> {
     Navigator.pushNamed(context, LocationsRoute);
   }
 
-  _getName() async {
-    getUserName().then((result) {
-      print(result);
-      setState(() {
-        usuario = result;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    _getName();
+    getUser().then((result) {
+      print(result);
+      setState(() {
+        usuario = result['name'];
+      });
+    });
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
@@ -106,17 +103,10 @@ class _Settings extends State<Settings> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/trainers/trainer_1.png'),
-                          minRadius: 25,
-                          maxRadius: 40,
-                        ),
+                        leading: FotoPerfil(),
                         title: Align(
-                          child: Text(
-                            usuario,
-                            style: TextStyle(fontSize: 20),
-                          ),
+                          child: Text(usuario,
+                            style: TextStyle(fontSize: 20),),
                           alignment: Alignment(0, 0),
                         ),
                         onTap: () => _onLocationTap(context),
@@ -199,3 +189,24 @@ class _Settings extends State<Settings> {
     );
   }
 }
+class FotoPerfil extends StatefulWidget{
+  _FotoPerfil createState() => _FotoPerfil();
+}
+class _FotoPerfil extends State<FotoPerfil>{
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    getUser().then((result) {
+      num_entr = result['trainer'];
+    });
+
+    return CircleAvatar(
+      radius: 35,
+      child:ClipOval(
+          child:Image.asset('assets/trainers/' + num_entr + '.png')
+      ),
+    );
+
+  }}
