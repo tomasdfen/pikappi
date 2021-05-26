@@ -403,3 +403,12 @@ Pokemon parsePokemon(String data) {
   final parsed = jsonDecode(data);
   return Pokemon.fromJson(parsed);
 }
+
+Future<String> fetchPokemonDesc(int number) async {
+  String url = "https://pokeapi.co/api/v2/pokemon-species/$number/";
+  final file = await DefaultCacheManager().getSingleFile(url);
+  String jsonData = await file.readAsString();
+  final json = jsonDecode(jsonData);
+  return json['flavor_text_entries'][26]['flavor_text'];
+}
+
