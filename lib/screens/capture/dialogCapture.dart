@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:pikappi/DataBase/connection.dart';
 import 'package:pikappi/Models/pokemon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pikappi/screens/details/details.dart';
+import '../../app.dart';
 import '../quiz/question.dart';
 import '../quiz/demo_values.dart';
 import '../quiz/quiz_page.dart';
@@ -21,24 +24,53 @@ class CaptureAlertDialog extends StatefulWidget {
 class _BeautifulAlertDialog extends State<CaptureAlertDialog> {
     String mensaje;
 
-  _startQuiz() async {
-    Pokemon p = await fetchPokemon("https://pokeapi.co/api/v2/pokemon/${Random().nextInt(150)+1}/").then((res) {
-      return res;});
-    List<Question> questions = await createQuestions(p).then((res) {
-      return res;});
+    _onLocationTap(BuildContext context, route) {
+      Navigator.pushNamed(context, route);
+    }
 
-    Navigator.pop(context);
-    Navigator.of(context).push(
-        MaterialPageRoute(
-            builder: (_) =>
-                QuizPage(
-                    questions: questions,
-                    category: Category(
-                        10,
-                        '${p.name[0].toUpperCase()}${p.name.substring(1)}',
-                        icon: FontAwesomeIcons.bookOpen),
-                    pokemon: p)));
-  }
+    Widget pokemonSprite(){
+      return widget.result
+          ? Image.network(
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${widget.pokemon.number}.png",
+          height: 140,
+
+          fit: BoxFit.fill,
+        ): ColorFiltered(
+        colorFilter:
+        ColorFilter.mode(Colors.black, BlendMode.modulate),
+        child: Image.network(
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${widget.pokemon.number}.png",
+          height: 140,
+
+          fit: BoxFit.fill,
+        ),
+      );
+    }
+
+    Widget viewPokemon() {
+      return widget.result
+          ? RaisedButton(
+        child: Text("View Pokemon",
+            textAlign: TextAlign.center,
+            style: new TextStyle(
+              fontSize: 12.0,
+            )
+        ),
+        color: Colors.green,
+        colorBrightness: Brightness.dark,
+        onPressed: () {
+          addPokemon(widget.pokemon.number);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      Details(pokemon: widget.pokemon, color: getTypeColor(widget.pokemon.types[0]))));
+        },
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0)),
+      )
+          : Container();
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +98,7 @@ class _BeautifulAlertDialog extends State<CaptureAlertDialog> {
               CircleAvatar(
                 radius: 55,
                 backgroundColor: Colors.grey.shade200,
-                child: Image.asset("assets/images/pokebola.png"),
+                child: pokemonSprite(),
               ),
               SizedBox(width: 20.0),
               Expanded(
@@ -77,18 +109,24 @@ class _BeautifulAlertDialog extends State<CaptureAlertDialog> {
                     
                     SizedBox(height: 10.0),
                     Flexible(
-                      child: Text(mensaje, style: Theme.of(context).textTheme.title,),
+                      child: Text(mensaje, style: Theme.of(context).textTheme.bodyText2,),
                     ),
                     SizedBox(height: 10.0),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
                           child: RaisedButton(
-                            child: Text("No"),
+                            child: Text("Go Home",
+                                textAlign: TextAlign.center,
+                                style: new TextStyle(
+                                  fontSize: 12.0,
+                                )),
                             color: Colors.red,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
-                              Navigator.pop(context);
+                              _onLocationTap(context, LocationsRoute);
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
@@ -96,16 +134,7 @@ class _BeautifulAlertDialog extends State<CaptureAlertDialog> {
                         ),
                         SizedBox(width: 10.0),
                         Expanded(
-                          child: RaisedButton(
-                            child: Text("Yes"),
-                            color: Colors.green,
-                            colorBrightness: Brightness.dark,
-                            onPressed: () {
-                              _startQuiz();
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                          ),
+                          child: viewPokemon(),
                         ),
                       ],
                     )

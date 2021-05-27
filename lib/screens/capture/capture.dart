@@ -42,7 +42,8 @@ class _CapturePokemon extends State<CapturePokemon>
           _alertDialog(context);
         });
       });
-    } else {
+    }/*
+    else {
       setState(() {
         posLeft = 0;
         posRight = 0;
@@ -52,7 +53,7 @@ class _CapturePokemon extends State<CapturePokemon>
         height = 140;
         width = 120;
       });
-    }
+    } */
   }
 
   _alertDialog(BuildContext context) {
@@ -85,7 +86,7 @@ class _CapturePokemon extends State<CapturePokemon>
     bool selected = false;
     return Scaffold(
       backgroundColor: Color.fromRGBO(38, 38, 38, 1),
-      appBar: AppBar(title: Text('Home Page')),
+      //appBar: AppBar(title: Text('Home Page')),
       body: AnimatedBackground(
         behaviour: RandomParticleBehaviour(),
         vsync: this,
@@ -119,10 +120,10 @@ class _CapturePokemon extends State<CapturePokemon>
               curve: Curves.easeInOutBack,
               child: Center(
                 child: Image(
-                  width: 110,
-                  height: 110,
+                  width: 90,
+                  height: 90,
                   image: AssetImage(
-                    "assets/images/pokeball.png",
+                    "assets/images/poke.png",
                   ),
                 ),
               ),
@@ -136,46 +137,6 @@ class _CapturePokemon extends State<CapturePokemon>
                 child: Text("Capture!"),
               ),
             ),
-            /*Align(
-                alignment: Alignment.center,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                          height: 120,
-                          child: ColorFiltered(
-                            colorFilter: ColorFilter.mode(
-                                Colors.black, BlendMode.modulate),
-                            child: Image.network(
-                              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${widget.pokemon.number}.png",
-                              height: 100,
-                              fit: BoxFit.fill,
-                            ),
-                          )),
-                    ],
-                  ),
-                )),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                AnimatedContainer(
-                  duration: Duration(milliseconds: 80),
-                  height: height,
-                  width: height,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.transparent, // background// foreground
-                    ),
-                    child: Container(
-                        color: Colors.transparent,
-                        child: Image.asset("assets/images/pokeball.png")),
-                    onPressed: () =>
-                        setState(() => height = height == 100 ? 150 : 100),
-                  ),
-                ),
-              ],
-            )*/
           ],
         ),
       ),

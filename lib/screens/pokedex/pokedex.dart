@@ -49,7 +49,7 @@ class Pokedex extends StatelessWidget {
       body: GridView.count(
         crossAxisCount: 3,
         children: List.generate(150, (index) {
-          bool show = captured.contains(index);
+          bool show = captured.contains(index +1);
           print(show);
           return FutureBuilder(
               future: fetchPokemon(

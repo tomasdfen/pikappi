@@ -237,8 +237,8 @@ Future<List<Question>> createQuestions(Pokemon p) async {
       "correct_answer": p.types[0],
       "incorrect_answers": [
         copiaTipos[Random().nextInt(5 - 0)],
-        copiaTipos[Random().nextInt(10 - 5)],
-        copiaTipos[Random().nextInt(15 - 10)],
+        copiaTipos[Random().nextInt(10 - 6)],
+        copiaTipos[Random().nextInt(15 - 11)],
       ]
     }
   ];

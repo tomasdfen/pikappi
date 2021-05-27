@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:mongo_dart/mongo_dart.dart';
 import 'dart:io' show Platform;
 
@@ -152,4 +154,34 @@ Future<List<dynamic>> getPokemonList() async {
   var captured = temp['captured'];
   await db.close();
   return captured;
+}
+
+void addPokemon(int n) async {
+  var db = await Db.create(
+      "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
+  await db.open();
+  print('====================================================================');
+  print('>> Adding Pokemon');
+  var collection = db.collection('user');
+
+  Map<String, dynamic> map = {};
+  await collection.find().forEach((v) {
+    map['_id'] = v['_id'];
+    map['image'] = v['image'];
+    map['name'] = v['name'];
+    map['gender'] = v['gender'];
+    map['birthday'] = v['birthday'];
+    map['fav_pokemon'] = v['fav_pokemon'];
+    map['captured'] = v['captured'];
+  });
+
+  if (!map['captured'].contains(n)) {
+    map['captured'].add(n);
+  }
+  print(map['captured']);
+
+  await collection.updateOne(
+      where.eq('_id', 'usuario'), modify.set('captured', map['captured']));
+
+  await db.close();
 }
