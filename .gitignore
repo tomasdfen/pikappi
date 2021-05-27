@@ -44,3 +44,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+android/local.properties
+.dart_tool/version
+.dart_tool/package_config.json
+.dart_tool/package_config_subset
+pubspec.lock
+.packages
+android/local.properties
+.dart_tool/version
+.dart_tool/package_config.json
+.dart_tool/package_config_subset
+pubspec.lock
+.packages
