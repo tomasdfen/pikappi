@@ -40,7 +40,6 @@ class Pokedex extends StatelessWidget {
   Pokedex({Key key, this.captured}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print(captured);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -50,7 +49,6 @@ class Pokedex extends StatelessWidget {
         crossAxisCount: 3,
         children: List.generate(150, (index) {
           bool show = captured.contains(index +1);
-          print(show);
           return FutureBuilder(
               future: fetchPokemon(
                   "https://pokeapi.co/api/v2/pokemon/${index + 1}/"),

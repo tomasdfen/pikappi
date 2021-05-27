@@ -9,7 +9,7 @@ Future<Map<String, dynamic>> getUser() async {
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Adding Authors');
+  print('>> Obteniendo usuario');
   Map<String, dynamic> map = {};
   var collection = db.collection('user');
 
@@ -32,7 +32,7 @@ Future<String> getUserName() async {
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Adding Authors');
+  print('>> Obteniendo nombre de usuario');
   var collection = db.collection('user');
 
   Map<String, dynamic> map = {};
@@ -48,13 +48,14 @@ Future<String> getUserName() async {
   await db.close();
   return map['name'];
 }
+
 Future<String> updateUserName(String name) async {
   print("Ubuntu");
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Updating User');
+  print('>> Actualizando usuario');
   var collection = db.collection('user');
 
   collection.updateOne(where.eq('_id', 'usuario'), modify.set('name', name));
@@ -62,12 +63,13 @@ Future<String> updateUserName(String name) async {
   await db.close();
   return "Changed gender to " + name;
 }
+
 Future<String> updateUserGender(String gender) async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Updating User');
+  print('>> Actualizando genero');
   var collection = db.collection('user');
 
   collection.updateOne(
@@ -76,13 +78,14 @@ Future<String> updateUserGender(String gender) async {
   await db.close();
   return "Changed gender to " + gender;
 }
+
 Future<DateTime> updateUserBirthday(DateTime date) async {
   print("Ubuntu");
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Updating User');
+  print('>> Actualizando cumpleaños');
   var collection = db.collection('user');
 
   collection.updateOne(
@@ -91,6 +94,7 @@ Future<DateTime> updateUserBirthday(DateTime date) async {
   await db.close();
   return date;
 }
+
 Future<String> updateUserTrainer(String trainer) async {
   print("Ubuntu");
   var db = await Db.create(
@@ -100,7 +104,8 @@ Future<String> updateUserTrainer(String trainer) async {
   print('>> Updating User');
   var collection = db.collection('user');
 
-  collection.updateOne(where.eq('_id', 'usuario'), modify.set('trainer', trainer));
+  collection.updateOne(
+      where.eq('_id', 'usuario'), modify.set('trainer', trainer));
 
   await db.close();
   return trainer;
@@ -111,14 +116,13 @@ updateFavPokemon(int fav) async {
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Updating User');
+  print('>> Actualizando Pokemon Favorito');
   var collection = db.collection('user');
 
   collection.updateOne(
       where.eq('_id', 'usuario'), modify.set('fav_pokemon', fav));
 
   await db.close();
-
 }
 
 Future<int> getFavPokemon() async {
@@ -126,7 +130,7 @@ Future<int> getFavPokemon() async {
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Adding Authors');
+  print('>> Obteniendo Pokemon favorito');
   var collection = db.collection('user');
 
   Map<String, dynamic> map = {};
@@ -147,10 +151,10 @@ Future<List<dynamic>> getPokemonList() async {
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Updating User');
+  print('>> Oobteniendo lista de pokemon capturados');
   var collection = db.collection('user');
   var temp =
-  await collection.findOne(where.eq("_id", 'usuario').fields(['captured']));
+      await collection.findOne(where.eq("_id", 'usuario').fields(['captured']));
   var captured = temp['captured'];
   await db.close();
   return captured;
@@ -161,7 +165,7 @@ void addPokemon(int n) async {
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Adding Pokemon');
+  print('>> Añado pokemon a capturados');
   var collection = db.collection('user');
 
   Map<String, dynamic> map = {};

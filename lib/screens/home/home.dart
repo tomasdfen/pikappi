@@ -24,9 +24,12 @@ class _Home extends State<Home> {
   String pokemonSprite = "";
 
   setPokemon() async {
-    int num = await getFavPokemon();
-    this.pokemonSprite =
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png";
+    getFavPokemon().then((value) {
+      setState(() {
+        this.pokemonSprite =
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${value}.png";
+      });
+    });
   }
 
   Widget build(BuildContext context) {
@@ -48,7 +51,33 @@ class _Home extends State<Home> {
                 child: Image.network(
                   this.pokemonSprite,
                   fit: BoxFit.fill,
-                )),
+                ))
+            // FutureBuilder(
+            //     future: setPokemon(),
+            //     builder: (context, snapshot) {
+            //       if (snapshot.hasError) {
+            //         print("Hola");
+            //       }
+
+            //       return snapshot.hasData
+            //           ? InkWell(
+            //               onTap: () {
+            //                 setState(() {
+            //                   this.pokemonSprite = setPokemon();
+            //                 });
+            //               },
+            //               child: Image.network(
+            //                 snapshot.data,
+            //                 fit: BoxFit.fill,
+            //               ))
+            //           : Center(
+            //               child: Image.asset(
+            //               "assets/images/pikachu.gif",
+            //               height: 125.0,
+            //               width: 125.0,
+            //             ));
+            //     })
+            ,
             BottomRow(),
           ],
         ),
