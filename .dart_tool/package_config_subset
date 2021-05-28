@@ -98,6 +98,14 @@ flutter_custom_clippers
 2.1
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_clippers-1.1.2/
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_clippers-1.1.2/lib/
+flutter_local_notifications
+2.12
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-5.0.0+4/
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-5.0.0+4/lib/
+flutter_local_notifications_platform_interface
+2.12
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications_platform_interface-3.0.0/
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications_platform_interface-3.0.0/lib/
 flutter_svg
 2.12
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.22.0/
@@ -126,6 +134,10 @@ image
 2.12
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/image-3.0.2/
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/image-3.0.2/lib/
+imagebutton
+2.1
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/imagebutton-0.0.6/
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/imagebutton-0.0.6/lib/
 intl
 2.12
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/
@@ -240,8 +252,8 @@ file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/s
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/settings_ui-1.0.0/lib/
 shared_preferences
 2.12
-file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.5/
-file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.5/lib/
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.6/
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.6/lib/
 shared_preferences_linux
 2.12
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.0.0/
@@ -298,6 +310,10 @@ test_api
 2.12
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib/
+timezone
+2.12
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/timezone-0.7.0/
+file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/timezone-0.7.0/lib/
 typed_data
 2.12
 file:///D:/Archivos%20de%20programa/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/

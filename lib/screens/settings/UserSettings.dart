@@ -10,20 +10,22 @@ import '../../Widgets/ScreenSize.dart';
 import 'dart:math';
 import '../../app.dart';
 import '../home/home.dart';
+import 'Settings.dart';
 
 class UserSettings extends StatefulWidget {
   _UserSettings createState() => _UserSettings();
 }
 
-
+String num_entr = '0';
 
 class FavoritePokemon extends StatelessWidget {
   String _favPokeSprite = "";
 
   Future<String> more() async {
-    int favnumber = await getFavPokemon();
+    Map<String, dynamic> favnumber = await getFavPokemonYEntrenador();
+    int favvnumer = favnumber['fav_pokemon'];
     Pokemon poke = await fetchPokemon(
-        "https://pokeapi.co/api/v2/pokemon/${favnumber}/");
+        "https://pokeapi.co/api/v2/pokemon/${favvnumer}/");
     return poke.prettySprite;
   }
 

@@ -125,7 +125,7 @@ updateFavPokemon(int fav) async {
   await db.close();
 }
 
-Future<int> getFavPokemon() async {
+Future<Map<String,dynamic>> getFavPokemonYEntrenador() async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
@@ -135,17 +135,12 @@ Future<int> getFavPokemon() async {
 
   Map<String, dynamic> map = {};
   await collection.find().forEach((v) {
-    map['_id'] = v['_id'];
-    map['image'] = v['image'];
-    map['name'] = v['name'];
-    map['gender'] = v['gender'];
-    map['birthday'] = v['birthday'];
+    map['trainer'] = v['trainer'];
     map['fav_pokemon'] = v['fav_pokemon'];
   });
   await db.close();
-  return map['fav_pokemon'];
+  return map;
 }
-
 Future<List<dynamic>> getPokemonList() async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");

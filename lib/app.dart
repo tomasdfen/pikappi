@@ -18,6 +18,7 @@ const SettingsRoute = '/settings';
 const QuizRoute = '/quiz';
 const UserSettingsRoute = '/usersettings';
 const CaptureRoute = '/capture';
+const Prueba = '/prueba';
 
 class SizeConfig {
   static MediaQueryData _mediaQueryData;

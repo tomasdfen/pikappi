@@ -17,24 +17,25 @@ class Home extends StatefulWidget {
   _Home createState() => _Home();
 }
 
-String num_entr = '0';
-AssetImage perfil;
 
 class _Home extends State<Home> {
   @override
   String pokemonSprite = "";
+  String num_entr;
+  AssetImage perfil;
 
-  setPokemon() async {
-    getFavPokemon().then((value) {
+  setPokemonYEntrenador() async {
+    getFavPokemonYEntrenador().then((value) {
       setState(() {
         this.pokemonSprite =
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${value}.png";
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${value['fav_pokemon']}.png";
+        this.num_entr = 'assets/trainers/${value['trainer']}.png';
       });
     });
   }
 
   Widget build(BuildContext context) {
-    setPokemon();
+    setPokemonYEntrenador();
     return Scaffold(
 //      appBar: AppBar(title: Text('Home Page')),
       body: Container(
@@ -92,7 +93,12 @@ class _Home extends State<Home> {
             onPressed: () {
               Navigator.pushNamed(context, UserSettingsRoute);
             },
-            child: FotoPerfil(),
+            child: CircleAvatar(
+              radius: 25,
+              child: ClipOval(
+                  child: Image.asset(this.num_entr,
+                      fit: BoxFit.cover, alignment: FractionalOffset.topCenter)),
+            ),
             backgroundColor: Colors.redAccent,
           ),
         ),
@@ -133,7 +139,7 @@ _alertDialog(BuildContext context) {
   );
 }
 
-class FotoPerfil extends StatefulWidget {
+/*class FotoPerfil extends StatefulWidget {
   _FotoPerfil createState() => _FotoPerfil();
 }
 
@@ -152,3 +158,4 @@ class _FotoPerfil extends State<FotoPerfil> {
     );
   }
 }
+*/
