@@ -167,7 +167,7 @@ class _Settings extends State<Settings> {
                   ),
                   _buildDivider(),
 
-                  MyApp(),
+                  Notificaciones(),
 
                   _buildDivider(),
                   SwitchListTile(
@@ -230,12 +230,12 @@ class _FotoPerfil extends State<FotoPerfil>{
 
   }}
 
-class MyApp extends StatefulWidget {
+class Notificaciones extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _NotificacionesState createState() => _NotificacionesState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _NotificacionesState extends State<Notificaciones> {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   bool _notificaciones = false;
   @override

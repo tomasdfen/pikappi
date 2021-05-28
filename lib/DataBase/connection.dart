@@ -130,7 +130,7 @@ Future<Map<String,dynamic>> getFavPokemonYEntrenador() async {
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Obteniendo Pokemon favorito');
+  print('>> Obteniendo Pokemon y Entrenador favorito');
   var collection = db.collection('user');
 
   Map<String, dynamic> map = {};
