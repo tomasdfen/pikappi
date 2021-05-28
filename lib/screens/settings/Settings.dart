@@ -40,19 +40,28 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'utils/git_assets.dart';
 import 'utils/inlanding.dart';
 */
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../Widgets/utils/git_assets.dart';
 import '../../app.dart';
 import '../../DataBase/connection.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class Settings extends StatefulWidget{
   _Settings createState()=> _Settings();
+
 }
 String usuario='aa';
 String num_entr = '0';
 
+
 class _Settings extends State<Settings> {
+
+
   static final String path = "lib/screens/settings/Settings.dart";
   final TextStyle headerStyle = TextStyle(
     color: Colors.grey.shade800,
@@ -63,20 +72,24 @@ class _Settings extends State<Settings> {
 
   final String foto = 'assets/trainers/trainer_1.png';
 
-  bool rece = true;
+
+  final assetsAudioPlayer = AssetsAudioPlayer();
 
   _onLocationTap(BuildContext context) {
     Navigator.pushNamed(context, LocationsRoute);
   }
 
+  bool _play = false;
   @override
   Widget build(BuildContext context) {
     getUser().then((result) {
       print(result);
       setState(() {
         usuario = result['name'];
+
       });
     });
+
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
@@ -116,7 +129,7 @@ class _Settings extends State<Settings> {
                 )),
             const SizedBox(height: 20.0),
             Text(
-              "PUSH NOTIFICATIONS",
+              "Ajustes del Sistema",
               style: headerStyle,
             ),
             Card(
@@ -128,11 +141,20 @@ class _Settings extends State<Settings> {
                 children: <Widget>[
                   SwitchListTile(
                     activeColor: Colors.purple,
-                    value: rece,
-                    title: Text("Received notification"),
+                    value: _play,
+                    title: Text("Activar música"),
                     onChanged: (bool value) {
+                      if(value == true){
+                        assetsAudioPlayer.open(
+                            Audio("assets/audios/background.mp3"),
+                          showNotification: true,
+                        );
+                      }
+                      else{
+                        assetsAudioPlayer.pause();
+                      }
                       setState(() {
-                        rece = value;
+                        _play = value;
                       });
                     },
                   ),
@@ -144,12 +166,9 @@ class _Settings extends State<Settings> {
                     onChanged: null,
                   ),
                   _buildDivider(),
-                  SwitchListTile(
-                    activeColor: Colors.purple,
-                    value: true,
-                    title: Text("Received Offer Notification"),
-                    onChanged: (val) {},
-                  ),
+
+                  Notificaciones(),
+
                   _buildDivider(),
                   SwitchListTile(
                     activeColor: Colors.purple,
@@ -210,3 +229,85 @@ class _FotoPerfil extends State<FotoPerfil>{
     );
 
   }}
+
+class Notificaciones extends StatefulWidget {
+  @override
+  _NotificacionesState createState() => _NotificacionesState();
+}
+
+class _NotificacionesState extends State<Notificaciones> {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  bool _notificaciones = false;
+  @override
+  void initState() {
+    super.initState();
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+    var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iOS = new IOSInitializationSettings();
+    var initSetttings = new InitializationSettings(android: android, iOS: iOS);
+    flutterLocalNotificationsPlugin.initialize(initSetttings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) {
+    debugPrint("payload : $payload");
+    showDialog(
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text('Notification'),
+        content: new Text('$payload'),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchListTile(
+          title: Text("Recibir notificaciones"),
+          activeColor: Colors.purple,
+          value: _notificaciones,
+          onChanged: (bool value){
+            if(value == true){
+              showNotification();
+              showNotificationPerTime();
+            }
+            else{
+
+            }
+            setState(() {
+              _notificaciones = value;
+            });
+          },
+    );
+  }
+
+  showNotification() async {
+    var android = new AndroidNotificationDetails(
+        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+        priority: Priority.high,importance: Importance.max
+    );
+    var iOS = new IOSNotificationDetails();
+    var platform = new NotificationDetails(android: android, iOS: iOS);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'PikAppi', 'Notificaciones activadas', platform,
+        payload: 'AndroidCoding.in');
+  }
+  showNotificationPerTime() async {
+    var android = new AndroidNotificationDetails(
+        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+        priority: Priority.high,importance: Importance.max
+    );
+    var iOS = new IOSNotificationDetails();
+    var platform = new NotificationDetails(android: android, iOS: iOS);
+
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails('repeating channel id',
+        'repeating channel name', 'repeating description');
+
+    const NotificationDetails platformChannelSpecifics =
+    NotificationDetails(android: androidPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.periodicallyShow(0, 'PikAppi',
+        'Ven a capturar Pokémons!', RepeatInterval.daily, platformChannelSpecifics,
+        androidAllowWhileIdle: true);
+  }
+}
