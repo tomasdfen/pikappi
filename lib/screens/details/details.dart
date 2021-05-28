@@ -24,8 +24,8 @@ class Details extends StatelessWidget {
     this.color,
   });
 
-  void fillDetails() {
-    this.details['desc'] = "Descripción del Pokemon";
+  void fillDetails() async {
+    this.details['desc'] = await fetchPokemonDesc(pokemon.number);
   }
 
   @override
@@ -63,15 +63,24 @@ class Details extends StatelessWidget {
             ),
           ),
           Center(
-            child: Text(
-              this.details['desc'],
-              style: TextStyle(
-                  color: Colors.grey[800],
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Open Sans',
-                  fontSize: 20),
-            ),
-          ),
+              child: FutureBuilder(
+            future: fetchPokemonDesc(pokemon.number),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) print(snapshot.error);
+
+              return snapshot.hasData
+                  ? Text(
+                      snapshot.data,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.grey[800],
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Open Sans',
+                          fontSize: 14),
+                    )
+                  : LinearProgressIndicator();
+            },
+          )),
           Center(
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

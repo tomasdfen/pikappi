@@ -184,7 +184,7 @@ Future<List<Question>> createQuestions(Pokemon p) async {
 
   List<dynamic> abilities = p.abilities;
 
-  var pokemonNumbers = new List<int>.generate(151, (i) => i);
+  var pokemonNumbers = new List<int>.generate(150, (i) => i+1);
   pokemonNumbers.remove(p.number);
 
   List<Pokemon> randomPokemon = [];
@@ -237,8 +237,8 @@ Future<List<Question>> createQuestions(Pokemon p) async {
       "correct_answer": p.types[0],
       "incorrect_answers": [
         copiaTipos[Random().nextInt(5 - 0)],
-        copiaTipos[Random().nextInt(10 - 5)],
-        copiaTipos[Random().nextInt(15 - 10)],
+        copiaTipos[Random().nextInt(10 - 6)],
+        copiaTipos[Random().nextInt(15 - 11)],
       ]
     }
   ];

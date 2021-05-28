@@ -118,7 +118,7 @@ class QuizFinishedPage extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (_) =>
                                 CapturePokemon(
-                                    answers: answers,
+                                    percentage: correct/questions.length * 100,
                                     pokemon: pokemon))),
                   ),
                   RaisedButton(
