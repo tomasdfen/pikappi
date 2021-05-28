@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:pikappi/screens/quiz/quizHome.dart';
 import 'package:pikappi/screens/settings/Settings.dart';
 import '../../Widgets/ImageButton.dart';
@@ -17,6 +18,36 @@ import '../../DataBase/connection.dart';
 class Home extends StatefulWidget {
   _Home createState() => _Home();
 }
+String name = 'Nombre Entrenador';
+
+class FavoritePokemon extends StatelessWidget {
+  String _favPokeSprite = "";
+
+  Future<String> more() async {
+    int favnumber = await getFavPokemon();
+    Pokemon poke = await fetchPokemon(
+        "https://pokeapi.co/api/v2/pokemon/${favnumber}/");
+    return poke.prettySprite;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: more(),
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? Center(
+              child: Container(
+                  width: 180,
+                  height: 180,
+                  child:SvgPicture.network(snapshot.data,
+                                height: 30, width: 30)),
+                      )
+              : CircularProgressIndicator();
+        });
+  }
+}
+
 String num_entr = '0';
 AssetImage perfil;
 
@@ -37,11 +68,7 @@ class _Home extends State<Home> {
           children: <Widget>[
             Container(
                 height: 220,
-                child: Image.network(
-                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${Random()
-                      .nextInt(151) + 1}.png",
-                  fit: BoxFit.fill,
-                )),
+                child: FavoritePokemon()),
             BottomRow(),
           ],
         ),

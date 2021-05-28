@@ -15,47 +15,44 @@ class UserSettings extends StatefulWidget {
   _UserSettings createState() => _UserSettings();
 }
 
-String name = 'Nombre Entrenador';
 
-class FavoritePokemon extends StatefulWidget {
-  _FavoritePokemonState createState() => _FavoritePokemonState();
-}
 
-class _FavoritePokemonState extends State<FavoritePokemon> {
+class FavoritePokemon extends StatelessWidget {
   String _favPokeSprite = "";
 
   Future<String> more() async {
     int favnumber = await getFavPokemon();
     Pokemon poke = await fetchPokemon(
-        "https://pokeapi.co/api/v2/pokemon/${favnumber + 1}/");
+        "https://pokeapi.co/api/v2/pokemon/${favnumber}/");
     return poke.prettySprite;
   }
 
   @override
   Widget build(BuildContext context) {
-    getUser().then((result) {
-      setState(() async {
-        _favPokeSprite = await more();
-      });
-    });
-
-    return Center(
-        child: Container(
-            width: 70,
-            height: 70,
-            child: GridView.count(
-                childAspectRatio: 1.0,
-                padding: EdgeInsets.only(left: 5, right: 5),
-                crossAxisCount: 1,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                children: [
-                  Material(
-                      child: SvgPicture.network(_favPokeSprite,
-                          height: 30, width: 30)),
-                ])));
+    return FutureBuilder(
+        future: more(),
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? Center(
+              child: Container(
+                  width: 70,
+                  height: 70,
+                  child: GridView.count(
+                      childAspectRatio: 1.0,
+                      padding: EdgeInsets.only(left: 5, right: 5),
+                      crossAxisCount: 1,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      children: [
+                        Material(
+                            child: SvgPicture.network(snapshot.data,
+                                height: 30, width: 30)),
+                      ])))
+              : CircularProgressIndicator();
+        });
   }
 }
+String name = 'Nombre Entrenador';
 
 class _UserSettings extends State<UserSettings> {
   @override
@@ -63,6 +60,7 @@ class _UserSettings extends State<UserSettings> {
     getUser().then((result) {
       num_entr = result['trainer'];
       name = result['name'];
+      TextEditingController emailController = new TextEditingController();
     });
 
     Image perfil = Image.asset('assets/trainers/' + num_entr + '.png',
@@ -70,6 +68,11 @@ class _UserSettings extends State<UserSettings> {
 
     return Scaffold(
         backgroundColor: HexColor("DAF6FF"),
+        appBar: AppBar(
+        title: Text(
+        'User Settings',
+        ),
+        ),
         body: SingleChildScrollView(
             child: ConstrainedBox(
           constraints:
@@ -139,27 +142,31 @@ class _UserSettings extends State<UserSettings> {
                                       color: HexColor("DAF6FF")),
                                   child: Container(
                                       child: Center(
-                                          child: TextField(
-                                    controller: TextEditingController()
-                                      ..text = name,
-                                    maxLines: 1,
-                                    autocorrect: false,
-                                    enableSuggestions: false,
-                                    textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.visiblePassword,
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Nombre Entrenador",
-                                        contentPadding: EdgeInsets.all(8)),
-                                    onChanged: (text) {
-                                      TextEditingController()..text = name;
-                                      updateUserName(text);
-                                    },
-                                  ))),
+                                          child: Form(
+
+                                            child:TextField(
+                                              controller: TextEditingController()..text = name,
+                                              maxLines: 1,
+                                              maxLength: 14,
+                                              autocorrect: false,
+                                              enableSuggestions: false,
+                                              textAlign: TextAlign.center,
+                                              keyboardType: TextInputType.visiblePassword,
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  hintText: "Nombre Entrenador",
+                                                  contentPadding: EdgeInsets.all(-2)),
+                                              onSubmitted: (text) {
+                                                TextEditingController()..text = text;
+                                                updateUserName(text);
+                                              },
+                                            ))),
+
+
 
                                   height:
                                       MediaQuery.of(context).size.width * 0.05,
-                                ),
+                                  )),
                               ),
                             ),
                             Container(

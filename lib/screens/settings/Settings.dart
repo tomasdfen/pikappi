@@ -40,8 +40,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'utils/git_assets.dart';
 import 'utils/inlanding.dart';
 */
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../Widgets/utils/git_assets.dart';
 import '../../app.dart';
 import '../../DataBase/connection.dart';
@@ -51,6 +53,7 @@ class Settings extends StatefulWidget{
 }
 String usuario='aa';
 String num_entr = '0';
+
 
 class _Settings extends State<Settings> {
   static final String path = "lib/screens/settings/Settings.dart";
@@ -63,18 +66,20 @@ class _Settings extends State<Settings> {
 
   final String foto = 'assets/trainers/trainer_1.png';
 
-  bool rece = true;
+
+  final assetsAudioPlayer = AssetsAudioPlayer();
 
   _onLocationTap(BuildContext context) {
     Navigator.pushNamed(context, LocationsRoute);
   }
-
+  bool _play = false;
   @override
   Widget build(BuildContext context) {
     getUser().then((result) {
       print(result);
       setState(() {
         usuario = result['name'];
+
       });
     });
     return Scaffold(
@@ -128,11 +133,22 @@ class _Settings extends State<Settings> {
                 children: <Widget>[
                   SwitchListTile(
                     activeColor: Colors.purple,
-                    value: rece,
-                    title: Text("Received notification"),
+                    value: _play,
+                    title: Text("Activar música"),
                     onChanged: (bool value) {
+                      if(value == true){
+                        assetsAudioPlayer.open(
+                            Audio("assets/audios/background.mp3"),
+                          autoStart: true,
+                          showNotification: true,
+
+                        );
+                      }
+                      else{
+                        assetsAudioPlayer.pause();
+                      }
                       setState(() {
-                        rece = value;
+                        _play = value;
                       });
                     },
                   ),
