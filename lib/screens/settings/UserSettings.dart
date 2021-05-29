@@ -12,58 +12,70 @@ import '../../app.dart';
 import '../home/home.dart';
 import 'Settings.dart';
 
+String num_entr = '0';
+String name = 'Nombre Entrenador';
+String _favPokeSprite = "";
+String _value = "femenine";
+List<dynamic> captured = [];
+bool fetchableGender = true;
+bool fetchableProfile = true;
+bool fetchableDate = true;
+
 class UserSettings extends StatefulWidget {
   _UserSettings createState() => _UserSettings();
 }
 
-String num_entr = '0';
-
 class FavoritePokemon extends StatelessWidget {
-  String _favPokeSprite = "";
-
-  Future<String> more() async {
-    Map<String, dynamic> favnumber = await getFavPokemonYEntrenador();
-    int favvnumer = favnumber['fav_pokemon'];
-    Pokemon poke = await fetchPokemon(
-        "https://pokeapi.co/api/v2/pokemon/${favvnumer}/");
-    return poke.prettySprite;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: more(),
-        builder: (context, snapshot) {
-          return snapshot.hasData
-              ? Center(
-              child: Container(
-                  width: 70,
-                  height: 70,
-                  child: GridView.count(
-                      childAspectRatio: 1.0,
-                      padding: EdgeInsets.only(left: 5, right: 5),
-                      crossAxisCount: 1,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
-                      children: [
-                        Material(
-                            child: SvgPicture.network(snapshot.data,
-                                height: 30, width: 30)),
-                      ])))
-              : CircularProgressIndicator();
-        });
+    return Center(
+        child: Container(
+            width: 70,
+            height: 70,
+            child: GridView.count(
+                childAspectRatio: 1.0,
+                padding: EdgeInsets.only(left: 5, right: 5),
+                crossAxisCount: 1,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                children: [
+                  Material(
+                      child: SvgPicture.network(_favPokeSprite,
+                          height: 30, width: 30)),
+                ])));
   }
 }
-String name = 'Nombre Entrenador';
 
 class _UserSettings extends State<UserSettings> {
+  fetchDetails() async {
+    Map<String, dynamic> result = await getUser();
+    setState(() {
+      print("Refrescando usuario");
+      fetchPokemon(
+              "https://pokeapi.co/api/v2/pokemon/${result['fav_pokemon']}/")
+          .then((p) {
+        _favPokeSprite = p.prettySprite;
+      });
+      if (fetchableProfile) {
+        num_entr = result['trainer'];
+        fetchableProfile = false;
+      }
+      if (fetchableGender) {
+        _value = result['gender'];
+        fetchableGender = false;
+      }
+      if (fetchableDate) {
+        selectedDate = result['birthday'];
+        fetchableDate = false;
+      }
+      name = result['name'];
+      captured = result['captured'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    getUser().then((result) {
-      num_entr = result['trainer'];
-      name = result['name'];
-      TextEditingController emailController = new TextEditingController();
-    });
+    fetchDetails();
 
     Image perfil = Image.asset('assets/trainers/' + num_entr + '.png',
         fit: BoxFit.contain);
@@ -71,9 +83,9 @@ class _UserSettings extends State<UserSettings> {
     return Scaffold(
         backgroundColor: HexColor("DAF6FF"),
         appBar: AppBar(
-        title: Text(
-        'User Settings',
-        ),
+          title: Text(
+            'User Settings',
+          ),
         ),
         body: SingleChildScrollView(
             child: ConstrainedBox(
@@ -135,40 +147,39 @@ class _UserSettings extends State<UserSettings> {
                                 alignment: Alignment.topCenter,
                                 widthFactor: 0.5,
                                 child: Container(
-                                  //2 containers para respetar la medida del grande y luego reducirlo al marco de texto para el otro container
-                                  margin: const EdgeInsets.only(
-                                      bottom: 20.0, top: 10.0),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(20)),
-                                      color: HexColor("DAF6FF")),
-                                  child: Container(
+                                    //2 containers para respetar la medida del grande y luego reducirlo al marco de texto para el otro container
+                                    margin: const EdgeInsets.only(
+                                        bottom: 20.0, top: 10.0),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
+                                        color: HexColor("DAF6FF")),
+                                    child: Container(
                                       child: Center(
                                           child: Form(
-
-                                            child:TextField(
-                                              controller: TextEditingController()..text = name,
-                                              maxLines: 1,
-                                              maxLength: 14,
-                                              autocorrect: false,
-                                              enableSuggestions: false,
-                                              textAlign: TextAlign.center,
-                                              keyboardType: TextInputType.visiblePassword,
-                                              decoration: InputDecoration(
-                                                  border: InputBorder.none,
-                                                  hintText: "Nombre Entrenador",
-                                                  contentPadding: EdgeInsets.all(-2)),
-                                              onSubmitted: (text) {
-                                                TextEditingController()..text = text;
-                                                updateUserName(text);
-                                              },
-                                            ))),
-
-
-
-                                  height:
-                                      MediaQuery.of(context).size.width * 0.05,
-                                  )),
+                                              child: TextField(
+                                        controller: TextEditingController()
+                                          ..text = name,
+                                        maxLines: 1,
+                                        maxLength: 14,
+                                        autocorrect: false,
+                                        enableSuggestions: false,
+                                        textAlign: TextAlign.center,
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: "Nombre Entrenador",
+                                            contentPadding: EdgeInsets.all(-2)),
+                                        onSubmitted: (text) {
+                                          TextEditingController()..text = text;
+                                          updateUserName(text);
+                                        },
+                                      ))),
+                                      height:
+                                          MediaQuery.of(context).size.width *
+                                              0.05,
+                                    )),
                               ),
                             ),
                             Container(
@@ -346,7 +357,7 @@ class _UserSettings extends State<UserSettings> {
                                                                   horizontal:
                                                                       10.0),
                                                           child: Text(
-                                                              "Experiencia"),
+                                                              "Capturados"),
                                                         ),
                                                       )
                                                     ],
@@ -355,8 +366,8 @@ class _UserSettings extends State<UserSettings> {
                                                     children: <Widget>[
                                                       Expanded(
                                                           child: Center(
-                                                        child:
-                                                            Text("barra exp"),
+                                                        child: Text(
+                                                            "${captured.length}/151"),
                                                       )),
                                                     ],
                                                   ),
@@ -415,13 +426,13 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
+                                      num_entr = '0';
+                                      perfil = Image.asset(
+                                          'assets/trainers/0.png',
+                                          fit: BoxFit.contain);
+                                      fetchableProfile = false;
                                       updateUserTrainer('0')
-                                          .then((n) => (setState(() {
-                                                perfil = Image.asset(
-                                                    'assets/trainers/0.png',
-                                                    fit: BoxFit.contain);
-                                                num_entr = n;
-                                              })));
+                                          .then((n) => fetchableProfile = n);
                                     },
                                     child: ClipRRect(
                                       child: Image.asset(
@@ -433,13 +444,13 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
+                                      num_entr = '1';
+                                      perfil = Image.asset(
+                                          'assets/trainers/1.png',
+                                          fit: BoxFit.contain);
+                                      fetchableProfile = false;
                                       updateUserTrainer('1')
-                                          .then((n) => (setState(() {
-                                                perfil = Image.asset(
-                                                    'assets/trainers/1.png',
-                                                    fit: BoxFit.contain);
-                                                num_entr = n;
-                                              })));
+                                          .then((n) => fetchableProfile = n);
                                     },
                                     child: ClipRRect(
                                       child: Image.asset(
@@ -451,13 +462,13 @@ class _UserSettings extends State<UserSettings> {
                                 Material(
                                   child: InkWell(
                                     onTap: () {
+                                      num_entr = '2';
+                                      perfil = Image.asset(
+                                          'assets/trainers/2.png',
+                                          fit: BoxFit.contain);
+                                      fetchableProfile = false;
                                       updateUserTrainer('2')
-                                          .then((n) => (setState(() {
-                                                perfil = Image.asset(
-                                                    'assets/trainers/2.png',
-                                                    fit: BoxFit.contain);
-                                                num_entr = n;
-                                              })));
+                                          .then((n) => fetchableProfile = n);
                                     },
                                     child: Container(
                                       child: Image.asset(
@@ -492,8 +503,6 @@ class _UserSettings extends State<UserSettings> {
   }
 }
 
-String _value = "femenine";
-
 class GenderSelector extends StatefulWidget {
   _GenderSelectorState createState() => _GenderSelectorState();
 }
@@ -501,12 +510,6 @@ class GenderSelector extends StatefulWidget {
 class _GenderSelectorState extends State<GenderSelector> {
   @override
   Widget build(BuildContext context) {
-    getUser().then((result) {
-      setState(() {
-        _value = result['gender'];
-      });
-    });
-
     return Scaffold(
       backgroundColor: HexColor("DAF6FF"),
       body: Row(
@@ -516,7 +519,11 @@ class _GenderSelectorState extends State<GenderSelector> {
           GestureDetector(
             onTap: () {
               setState(() {
-                updateUserGender('femenine');
+                _value = 'femenine';
+                fetchableGender = false;
+                updateUserGender('femenine').then((value) =>
+                    Future.delayed(const Duration(seconds: 5))
+                        .then((nothing) => fetchableGender = value));
               });
             },
             child: Container(
@@ -534,7 +541,11 @@ class _GenderSelectorState extends State<GenderSelector> {
           GestureDetector(
             onTap: () {
               setState(() {
-                updateUserGender('masculine');
+                _value = 'masculine';
+                fetchableGender = false;
+                updateUserGender('masculine').then((value) =>
+                    Future.delayed(const Duration(seconds: 5))
+                        .then((nothing) => fetchableGender = value));
               });
             },
             child: Container(
@@ -552,7 +563,11 @@ class _GenderSelectorState extends State<GenderSelector> {
           GestureDetector(
             onTap: () {
               setState(() {
-                updateUserGender('nonbinary');
+                _value = 'nonbinary';
+                fetchableGender = false;
+                updateUserGender('nonbinary').then((value) =>
+                    Future.delayed(const Duration(seconds: 5))
+                        .then((nothing) => fetchableGender = value));
               });
             },
             child: Container(
@@ -582,12 +597,6 @@ class DatePickerDemo extends StatefulWidget {
 class _DatePickerDemoState extends State<DatePickerDemo> {
   @override
   Widget build(BuildContext context) {
-    getUser().then((result) {
-      setState(() {
-        selectedDate = result['birthday'];
-      });
-    });
-
     _selectDate(BuildContext context) async {
       final DateTime picked = await showDatePicker(
         context: context,

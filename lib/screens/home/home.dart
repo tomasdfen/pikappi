@@ -17,7 +17,6 @@ class Home extends StatefulWidget {
   _Home createState() => _Home();
 }
 
-
 class _Home extends State<Home> {
   @override
   String pokemonSprite = "";
@@ -27,6 +26,7 @@ class _Home extends State<Home> {
   setPokemonYEntrenador() async {
     getFavPokemonYEntrenador().then((value) {
       setState(() {
+        print(">> Actualizando ventana principal");
         this.pokemonSprite =
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${value['fav_pokemon']}.png";
         this.num_entr = 'assets/trainers/${value['trainer']}.png';
@@ -97,7 +97,8 @@ class _Home extends State<Home> {
               radius: 25,
               child: ClipOval(
                   child: Image.asset(this.num_entr,
-                      fit: BoxFit.cover, alignment: FractionalOffset.topCenter)),
+                      fit: BoxFit.cover,
+                      alignment: FractionalOffset.topCenter)),
             ),
             backgroundColor: Colors.redAccent,
           ),

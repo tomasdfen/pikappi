@@ -4,12 +4,10 @@ import 'package:mongo_dart/mongo_dart.dart';
 import 'dart:io' show Platform;
 
 Future<Map<String, dynamic>> getUser() async {
-  print("Ubuntu");
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Obteniendo usuario');
   Map<String, dynamic> map = {};
   var collection = db.collection('user');
 
@@ -64,7 +62,7 @@ Future<String> updateUserName(String name) async {
   return "Changed gender to " + name;
 }
 
-Future<String> updateUserGender(String gender) async {
+Future<bool> updateUserGender(String gender) async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
@@ -76,7 +74,7 @@ Future<String> updateUserGender(String gender) async {
       where.eq('_id', 'usuario'), modify.set('gender', gender));
 
   await db.close();
-  return "Changed gender to " + gender;
+  return true;
 }
 
 Future<DateTime> updateUserBirthday(DateTime date) async {
@@ -95,20 +93,19 @@ Future<DateTime> updateUserBirthday(DateTime date) async {
   return date;
 }
 
-Future<String> updateUserTrainer(String trainer) async {
-  print("Ubuntu");
+Future<bool> updateUserTrainer(String trainer) async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
+  print('>> Guardando foto de perfil');
   print('====================================================================');
-  print('>> Updating User');
   var collection = db.collection('user');
 
   collection.updateOne(
       where.eq('_id', 'usuario'), modify.set('trainer', trainer));
 
   await db.close();
-  return trainer;
+  return true;
 }
 
 updateFavPokemon(int fav) async {
@@ -125,12 +122,11 @@ updateFavPokemon(int fav) async {
   await db.close();
 }
 
-Future<Map<String,dynamic>> getFavPokemonYEntrenador() async {
+Future<Map<String, dynamic>> getFavPokemonYEntrenador() async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
   await db.open();
   print('====================================================================');
-  print('>> Obteniendo Pokemon y Entrenador favorito');
   var collection = db.collection('user');
 
   Map<String, dynamic> map = {};
@@ -141,6 +137,7 @@ Future<Map<String,dynamic>> getFavPokemonYEntrenador() async {
   await db.close();
   return map;
 }
+
 Future<List<dynamic>> getPokemonList() async {
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
