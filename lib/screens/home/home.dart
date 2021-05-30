@@ -41,7 +41,7 @@ class _Home extends State<Home> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/wallpaper.png"),
+            image: AssetImage("assets/images/backgroundDay.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -95,6 +95,8 @@ class _Home extends State<Home> {
             },
             child: CircleAvatar(
               radius: 25,
+              backgroundColor: Colors.white
+              ,
               child: ClipOval(
                   child: Image.asset(this.num_entr,
                       fit: BoxFit.cover,

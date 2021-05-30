@@ -215,7 +215,8 @@ class _FotoPerfil extends State<FotoPerfil> {
       num_entr = result['trainer'];
     });
 
-    return CircleAvatar(
+    return CircleAvatar(backgroundColor: Colors.white
+      ,
       radius: 35,
       child:
           ClipOval(child: Image.asset('assets/trainers/' + num_entr + '.png')),
