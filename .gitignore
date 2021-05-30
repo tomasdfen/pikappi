@@ -45,3 +45,11 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/screens/settings/UserSettings.dart
+ios/Runner/GeneratedPluginRegistrant.m
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+android/local.properties
+.dart_tool/version
+.dart_tool/package_config.json
+.dart_tool/package_config_subset
+pubspec.lock
+.packages

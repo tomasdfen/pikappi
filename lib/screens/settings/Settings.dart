@@ -51,17 +51,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-class Settings extends StatefulWidget{
-  _Settings createState()=> _Settings();
-
+class Settings extends StatefulWidget {
+  _Settings createState() => _Settings();
 }
-String usuario='aa';
+
+String usuario = 'aa';
 String num_entr = '0';
 
-
 class _Settings extends State<Settings> {
-
-
   static final String path = "lib/screens/settings/Settings.dart";
   final TextStyle headerStyle = TextStyle(
     color: Colors.grey.shade800,
@@ -70,8 +67,7 @@ class _Settings extends State<Settings> {
   );
   //TODO maximo de tamaño del nombre
 
-  final String foto = 'assets/trainers/trainer_1.png';
-
+  String foto = 'assets/trainers/trainer_1.png';
 
   final assetsAudioPlayer = AssetsAudioPlayer();
 
@@ -83,10 +79,10 @@ class _Settings extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     getUser().then((result) {
-      print(result);
+      print(">> Actualizando datos en ajustes");
       setState(() {
         usuario = result['name'];
-
+        foto = 'assets/trainers/trainer_{$result["trainer"]}.png';
       });
     });
 
@@ -118,8 +114,10 @@ class _Settings extends State<Settings> {
                       ListTile(
                         leading: FotoPerfil(),
                         title: Align(
-                          child: Text(usuario,
-                            style: TextStyle(fontSize: 20),),
+                          child: Text(
+                            usuario,
+                            style: TextStyle(fontSize: 20),
+                          ),
                           alignment: Alignment(0, 0),
                         ),
                         onTap: () => _onLocationTap(context),
@@ -144,13 +142,12 @@ class _Settings extends State<Settings> {
                     value: _play,
                     title: Text("Activar música"),
                     onChanged: (bool value) {
-                      if(value == true){
+                      if (value == true) {
                         assetsAudioPlayer.open(
-                            Audio("assets/audios/background.mp3"),
+                          Audio("assets/audios/background.mp3"),
                           showNotification: true,
                         );
-                      }
-                      else{
+                      } else {
                         assetsAudioPlayer.pause();
                       }
                       setState(() {
@@ -166,9 +163,7 @@ class _Settings extends State<Settings> {
                     onChanged: null,
                   ),
                   _buildDivider(),
-
                   Notificaciones(),
-
                   _buildDivider(),
                   SwitchListTile(
                     activeColor: Colors.purple,
@@ -208,27 +203,25 @@ class _Settings extends State<Settings> {
     );
   }
 }
-class FotoPerfil extends StatefulWidget{
+
+class FotoPerfil extends StatefulWidget {
   _FotoPerfil createState() => _FotoPerfil();
 }
-class _FotoPerfil extends State<FotoPerfil>{
 
-
+class _FotoPerfil extends State<FotoPerfil> {
   @override
   Widget build(BuildContext context) {
-
     getUser().then((result) {
       num_entr = result['trainer'];
     });
 
     return CircleAvatar(
       radius: 35,
-      child:ClipOval(
-          child:Image.asset('assets/trainers/' + num_entr + '.png')
-      ),
+      child:
+          ClipOval(child: Image.asset('assets/trainers/' + num_entr + '.png')),
     );
-
-  }}
+  }
+}
 
 class Notificaciones extends StatefulWidget {
   @override
@@ -263,51 +256,51 @@ class _NotificacionesState extends State<Notificaciones> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
-          title: Text("Recibir notificaciones"),
-          activeColor: Colors.purple,
-          value: _notificaciones,
-          onChanged: (bool value){
-            if(value == true){
-              showNotification();
-              showNotificationPerTime();
-            }
-            else{
-
-            }
-            setState(() {
-              _notificaciones = value;
-            });
-          },
+      title: Text("Recibir notificaciones"),
+      activeColor: Colors.purple,
+      value: _notificaciones,
+      onChanged: (bool value) {
+        if (value == true) {
+          showNotification();
+          showNotificationPerTime();
+        } else {}
+        setState(() {
+          _notificaciones = value;
+        });
+      },
     );
   }
 
   showNotification() async {
     var android = new AndroidNotificationDetails(
         'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
-        priority: Priority.high,importance: Importance.max
-    );
+        priority: Priority.high, importance: Importance.max);
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
     await flutterLocalNotificationsPlugin.show(
         0, 'PikAppi', 'Notificaciones activadas', platform,
         payload: 'AndroidCoding.in');
   }
+
   showNotificationPerTime() async {
     var android = new AndroidNotificationDetails(
         'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
-        priority: Priority.high,importance: Importance.max
-    );
+        priority: Priority.high, importance: Importance.max);
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails('repeating channel id',
-        'repeating channel name', 'repeating description');
+        AndroidNotificationDetails('repeating channel id',
+            'repeating channel name', 'repeating description');
 
     const NotificationDetails platformChannelSpecifics =
-    NotificationDetails(android: androidPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.periodicallyShow(0, 'PikAppi',
-        'Ven a capturar Pokémons!', RepeatInterval.daily, platformChannelSpecifics,
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.periodicallyShow(
+        0,
+        'PikAppi',
+        'Ven a capturar Pokémons!',
+        RepeatInterval.daily,
+        platformChannelSpecifics,
         androidAllowWhileIdle: true);
   }
 }
