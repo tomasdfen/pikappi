@@ -47,7 +47,7 @@ Future<String> getUserName() async {
   return map['name'];
 }
 
-Future<String> updateUserName(String name) async {
+Future<bool> updateUserName(String name) async {
   print("Ubuntu");
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
@@ -59,7 +59,7 @@ Future<String> updateUserName(String name) async {
   collection.updateOne(where.eq('_id', 'usuario'), modify.set('name', name));
 
   await db.close();
-  return "Changed gender to " + name;
+  return true;
 }
 
 Future<bool> updateUserGender(String gender) async {
@@ -77,7 +77,7 @@ Future<bool> updateUserGender(String gender) async {
   return true;
 }
 
-Future<DateTime> updateUserBirthday(DateTime date) async {
+Future<bool> updateUserBirthday(DateTime date) async {
   print("Ubuntu");
   var db = await Db.create(
       "mongodb+srv://admin:tfgadmin@cluster0.cjbui.mongodb.net/pikappi");
@@ -90,7 +90,7 @@ Future<DateTime> updateUserBirthday(DateTime date) async {
       where.eq('_id', 'usuario'), modify.set('birthday', date));
 
   await db.close();
-  return date;
+  return true;
 }
 
 Future<bool> updateUserTrainer(String trainer) async {

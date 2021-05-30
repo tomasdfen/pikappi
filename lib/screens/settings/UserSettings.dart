@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:mdi/mdi.dart';
 import 'package:intl/intl.dart';
+import 'dart:async';
+import 'package:async/async.dart';
 import '../../DataBase/connection.dart';
 import '../../Models/pokemon.dart';
 import '../../Widgets/ScreenSize.dart';
@@ -13,13 +15,15 @@ import '../home/home.dart';
 import 'Settings.dart';
 
 String num_entr = '0';
-String name = 'Nombre Entrenador';
+String name = '';
 String _favPokeSprite = "";
 String _value = "femenine";
 List<dynamic> captured = [];
 bool fetchableGender = true;
 bool fetchableProfile = true;
 bool fetchableDate = true;
+bool fetchableUserName = true;
+TextEditingController _name = TextEditingController()..text = "";
 
 class UserSettings extends StatefulWidget {
   _UserSettings createState() => _UserSettings();
@@ -49,6 +53,7 @@ class FavoritePokemon extends StatelessWidget {
 class _UserSettings extends State<UserSettings> {
   fetchDetails() async {
     Map<String, dynamic> result = await getUser();
+
     setState(() {
       print("Refrescando usuario");
       fetchPokemon(
@@ -68,7 +73,11 @@ class _UserSettings extends State<UserSettings> {
         selectedDate = result['birthday'];
         fetchableDate = false;
       }
-      name = result['name'];
+      if (fetchableUserName) {
+        _name.text = result['name'];
+        fetchableUserName = false;
+      }
+
       captured = result['captured'];
     });
   }
@@ -158,13 +167,15 @@ class _UserSettings extends State<UserSettings> {
                                       child: Center(
                                           child: Form(
                                               child: TextField(
-                                        controller: TextEditingController()
-                                          ..text = name,
+                                        controller: _name,
                                         maxLines: 1,
                                         maxLength: 14,
                                         autocorrect: false,
                                         enableSuggestions: false,
                                         textAlign: TextAlign.center,
+                                        onTap: () {
+                                          fetchableUserName = false;
+                                        },
                                         keyboardType:
                                             TextInputType.visiblePassword,
                                         decoration: InputDecoration(
@@ -172,8 +183,10 @@ class _UserSettings extends State<UserSettings> {
                                             hintText: "Nombre Entrenador",
                                             contentPadding: EdgeInsets.all(-2)),
                                         onSubmitted: (text) {
-                                          TextEditingController()..text = text;
-                                          updateUserName(text);
+                                          _name.text = text;
+                                          name = text;
+                                          updateUserName(text).then((value) =>
+                                              fetchableUserName = value);
                                         },
                                       ))),
                                       height:
@@ -608,7 +621,10 @@ class _DatePickerDemoState extends State<DatePickerDemo> {
         if (mounted) {
           setState(() {
             selectedDate = picked;
-            updateUserBirthday(picked);
+            if (fetchableDate) {
+              fetchableDate = false;
+              updateUserBirthday(picked).then((value) => fetchableDate = value);
+            }
           });
         }
       }
