@@ -90,8 +90,9 @@ class _UserSettings extends State<UserSettings> {
         fit: BoxFit.contain);
 
     return Scaffold(
-        backgroundColor: HexColor("DAF6FF"),
+        backgroundColor: HexColor("faf6f6"),
         appBar: AppBar(
+          backgroundColor: HexColor('ff7f00'),
           title: Text(
             'User Settings',
           ),
@@ -162,7 +163,7 @@ class _UserSettings extends State<UserSettings> {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(20)),
-                                        color: HexColor("DAF6FF")),
+                                        color: HexColor("faf6f6")),
                                     child: Container(
                                       child: Center(
                                           child: Form(
@@ -218,7 +219,7 @@ class _UserSettings extends State<UserSettings> {
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(10)),
-                                              color: HexColor("DAF6FF")),
+                                              color: HexColor("faf6f6")),
                                           child: Column(
                                             children: <Widget>[
                                               Container(
@@ -404,7 +405,7 @@ class _UserSettings extends State<UserSettings> {
                           flex: 2,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: HexColor("DAF6FF"),
+                              color: HexColor("faf6f6"),
                             ),
                             child: FractionallySizedBox(
                               alignment: Alignment.topCenter,
@@ -524,7 +525,7 @@ class _GenderSelectorState extends State<GenderSelector> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("DAF6FF"),
+      backgroundColor: HexColor("faf6f6"),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

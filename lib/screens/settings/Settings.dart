@@ -55,7 +55,7 @@ class Settings extends StatefulWidget {
   _Settings createState() => _Settings();
 }
 
-String usuario = 'aa';
+String usuario = 'usuario';
 String num_entr = '0';
 
 class _Settings extends State<Settings> {
@@ -215,7 +215,8 @@ class _FotoPerfil extends State<FotoPerfil> {
       num_entr = result['trainer'];
     });
 
-    return CircleAvatar(
+    return CircleAvatar(backgroundColor: Colors.white
+      ,
       radius: 35,
       child:
           ClipOval(child: Image.asset('assets/trainers/' + num_entr + '.png')),

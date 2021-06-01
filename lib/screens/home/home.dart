@@ -21,14 +21,14 @@ class _Home extends State<Home> {
   @override
   String pokemonSprite = "";
   String num_entr;
-  AssetImage perfil;
+  AssetImage perfil = AssetImage("assets/trainers/0.png");
 
   setPokemonYEntrenador() async {
     getFavPokemonYEntrenador().then((value) {
       setState(() {
         print(">> Actualizando ventana principal");
         this.pokemonSprite =
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${value['fav_pokemon']}.png";
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${value['fav_pokemon']}.svg";
         this.num_entr = 'assets/trainers/${value['trainer']}.png';
       });
     });
@@ -41,7 +41,7 @@ class _Home extends State<Home> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/backgroundDay.jpg"),
+            image: AssetImage("assets/images/back1.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -49,10 +49,10 @@ class _Home extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Container(
-                height: 220,
-                child: Image.network(
+                height: 120,
+                child: SvgPicture.network(
                   this.pokemonSprite,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.fitHeight,
                 ))
             // FutureBuilder(
             //     future: setPokemon(),
@@ -95,6 +95,8 @@ class _Home extends State<Home> {
             },
             child: CircleAvatar(
               radius: 25,
+              backgroundColor: Colors.white
+              ,
               child: ClipOval(
                   child: Image.asset(this.num_entr,
                       fit: BoxFit.cover,
