@@ -20,8 +20,8 @@ class Home extends StatefulWidget {
 class _Home extends State<Home> {
   @override
   String pokemonSprite = "";
-  String num_entr;
-  AssetImage perfil = AssetImage("assets/trainers/0.png");
+  String num_entr = 'assets/trainers/${0}.png';
+  AssetImage perfil;
 
   setPokemonYEntrenador() async {
     getFavPokemonYEntrenador().then((value) {
