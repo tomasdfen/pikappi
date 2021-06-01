@@ -46,11 +46,16 @@ dependencies:
   imagebutton: ^0.0.6
   intl: ^0.17.0
   flutter_local_notifications: ^5.0.0+4
+  flutter_launcher_icons: ^0.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/pikappiicon.jpg"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

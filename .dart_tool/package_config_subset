@@ -6,6 +6,10 @@ archive
 2.12
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2/
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2/lib/
+args
+2.12
+file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.0.0/
+file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.0.0/lib/
 assets_audio_player
 2.12
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/assets_audio_player-3.0.3+3/
@@ -98,6 +102,10 @@ flutter_custom_clippers
 2.1
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_clippers-1.1.2/
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_custom_clippers-1.1.2/lib/
+flutter_launcher_icons
+2.12
+file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.9.0/
+file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.9.0/lib/
 flutter_local_notifications
 2.12
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-5.0.0+4/
@@ -362,6 +370,10 @@ xml
 2.12
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.1.1/
 file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.1.1/lib/
+yaml
+2.12
+file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0/
+file:///D:/Programs%20Files/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0/lib/
 sky_engine
 2.12
 file:///D:/Programs%20Files/flutter/bin/cache/pkg/sky_engine/

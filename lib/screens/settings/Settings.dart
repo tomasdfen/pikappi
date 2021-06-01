@@ -55,7 +55,7 @@ class Settings extends StatefulWidget {
   _Settings createState() => _Settings();
 }
 
-String usuario = 'aa';
+String usuario = 'usuario';
 String num_entr = '0';
 
 class _Settings extends State<Settings> {
