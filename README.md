@@ -1,21 +1,21 @@
-## Pikappi
+# Pikappi
 
 Pikappi is an application that consists of a Pokémon game where we can capture Pokémons through a Quizz-style game, depending on the percentage of success in this minigame the user will have more or less opportunities to capture the wild appeared Pokémon. Once captured, it will be registered in our Pokédex,
 which is like a library where the user archive data of captured pokémons. The user can also personify his profile.
 
-# Home Page
+## Home Page
 
 
-# Settings Page
+## Settings Page
 
 
-# User Settings Page
+## User Settings Page
 
 
-# Pokedex Page
+## Pokedex Page
 
 
-# Quiz Page
+## Quiz Page
 
 
 This project is a starting point for a Flutter application.
