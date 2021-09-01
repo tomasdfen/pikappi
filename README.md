@@ -63,8 +63,11 @@ Once we finish with the quiz, we will get the results of it, with the percentage
 ### Capture Page
 If we click on the capture button we will see an animation to see if we have captured the pokémon or not. The probability of capture will depend on the percentage of success of the quiz. If it is captured, it will be unlocked in the Pokédex.
 
-Capture Page            |  Capture Dialog Pokedex   |  Capture Dialog Pokedex
-:-------------------------:|:-------------------------:|:-------------------------:
+Capture Page            |  Capture Dialog Pokedex 
+:-------------------------:|:-------------------------:
 ![Screenshot_1630516040](https://user-images.githubusercontent.com/46267014/131714706-6473759d-849d-4988-bbce-02e30a711464.png)  |
-![Screenshot_1630516047](https://user-images.githubusercontent.com/46267014/131714712-d1ad1d1f-8bf3-4e7c-8ad8-7d285d8fecc5.png) |
-![Screenshot_1630513040](https://user-images.githubusercontent.com/46267014/131714718-fa361f52-678f-45b6-88f7-0e55306401d6.png)
+![Screenshot_1630516047](https://user-images.githubusercontent.com/46267014/131714712-d1ad1d1f-8bf3-4e7c-8ad8-7d285d8fecc5.png)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46267014/131714718-fa361f52-678f-45b6-88f7-0e55306401d6.png" width="250">
+</p>
