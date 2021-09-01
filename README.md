@@ -5,9 +5,9 @@ Pikappi is an application that consists of a Pokémon game where we can capture 
 ## Home Page
 On our home screen we can see all the buttons and routes to the other screens, apart from our favorite pokémon, which will change depending on the pokémon we choose to accompany us. The accesible buttons are: the settings page, the quizz minigame and the Pokédex respectively. At the top right we will find a button with an avatar of our chosen coach that will take us to the user settings.
 
-Home Page            
-:-------------------------:
+<p align="center">
 <img src="https://user-images.githubusercontent.com/46267014/131714509-584a9d17-f156-4607-931b-f65f5a245851.png" width="200">
+</p>
 
 ## Settings Page
 It takes care of system settings and some options. This was a sample page for mere training with Flutter so a few have little functionality. The two buttons that we can actually interact with are those for music and notifications.
