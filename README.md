@@ -12,18 +12,18 @@ On our home screen we can see all the buttons and routes to the other screens, a
 ## Settings Page
 It takes care of system settings and some options. This was a sample page for mere training with Flutter so a few have little functionality. The two buttons that we can actually interact with are those for music and notifications.
 
-Settings Page            |  
-:-------------------------:|
-![Screenshot_1630515919](https://user-images.githubusercontent.com/46267014/131714536-be4181fa-533d-4620-904c-6cfe903d3bed.png | width=200)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46267014/131714536-be4181fa-533d-4620-904c-6cfe903d3bed.png" width="200">
+</p>
 
 The first button is simply to choose if we want to listen to background music. The other option is to receive notifications, as soon as you activate this option, a notification will appear alerting us that the option to receive notifications from the game has been activated, and every day a local notification will appear on the phone reminding us to play.
 
 ### User Settings Page
 In this screen we can see that its function is to personalize our profile and information, which we store in the MongoDB database.
 
-User Settings Page            |  
-:-------------------------:|
-![Screenshot_1630515936](https://user-images.githubusercontent.com/46267014/131714557-e97be959-8e65-4591-a05a-1327f4275fca.png | width=200)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46267014/131714557-e97be959-8e65-4591-a05a-1327f4275fca.png" width="200">
+</p>
 
 ## Pokedex Page
 
@@ -35,9 +35,9 @@ We can see a grid of 3 columns in order of the Pokédex of the first generation 
 
 Each container color that stores a pokémon will depend on the type of the pokémon in question, this value is obtained dynamically by consulting the type of pokémon in the API in order to have a colorful library
 
-Single Pokemon Page            |  
-:-------------------------:|
-![Screenshot_1630515982](https://user-images.githubusercontent.com/46267014/131714646-c709c213-22d8-4222-9481-fae784761100.png | width=200)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46267014/131714646-c709c213-22d8-4222-9481-fae784761100.png" width="200">
+</p>
 
 Once inside we can see its statistics, type and its photo that we also collect from the API. In addition, at the bottom right we will have a button to assign this pokémon as a favorite, and if we click on it an internal notification will appear below warning us that we have chosen this pokémon as our companion.
 
@@ -47,18 +47,18 @@ This pokédex is cached, that is, once we load your information for the first ti
 ### Questions Page
 A wild pokémon will appear that we must capture, which is random and can be any of the 151 pokemons available (whether or not they are captured). Its background color will be of the type of the pokémon in order to give us a little clue of who it may be, apart from showing us its hidden silhouette as it happened in the anime.
 
-Questions Page            |  
-:-------------------------:|
-![Screenshot_1630516020](https://user-images.githubusercontent.com/46267014/131714676-02f4959e-549d-4ecc-8187-c7fbf8892e2b.png | width=200)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46267014/131714676-02f4959e-549d-4ecc-8187-c7fbf8892e2b.png" width="200">
+</p>
 
 The minigame will consist of a small kahoot-style quiz asking us questions within a bank of available questions that we have programmed. The answers to these questions will be generated randomly depending on the pokémon, that is, there will be 1 correct option while the other 3 will be answers about other wrong Pokémons extracted from the API and without repeated data, in order to enrich the minigame and make it entertaining
 
 ### Results Page
 Once we finish with the quiz, we will get the results of it, with the percentage of correct answers. We can also check where we have failed and what was the correct answer in order to learn every time we play. Finally, if we want to capture the pokémon we must click on this button to enter the capture screen.
 
-Results Page            |  
-:-------------------------:|
-![Screenshot_1630516033](https://user-images.githubusercontent.com/46267014/131714702-dbf96825-ca7c-472c-b700-7f23f373ad53.png | width=200)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46267014/131714702-dbf96825-ca7c-472c-b700-7f23f373ad53.png" width="200">
+</p>
 
 ### Capture Page
 If we click on the capture button we will see an animation to see if we have captured the pokémon or not. The probability of capture will depend on the percentage of success of the quiz. If it is captured, it will be unlocked in the Pokédex.
