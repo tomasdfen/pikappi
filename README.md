@@ -29,11 +29,7 @@ In this screen we can see that its function is to personalize our profile and in
 
 Loading Page            |  Charged Pokedex
 :-------------------------:|:-------------------------:
-<p align="center">
-<img src="https://user-images.githubusercontent.com/46267014/131714618-7eb1e6b7-924e-47fb-ab58-54d2cc515224.png" width="250">
-</p>  |  <p align="center">
-<img src="https://user-images.githubusercontent.com/46267014/131714628-61b825e5-5075-4991-be74-22f262513809.png" width="250">
-</p>
+![Screenshot_1630514040](https://user-images.githubusercontent.com/46267014/131714618-7eb1e6b7-924e-47fb-ab58-54d2cc515224.png)  |  ![Screenshot_1630546040](https://user-images.githubusercontent.com/46267014/131714628-61b825e5-5075-4991-be74-22f262513809.png)
 
 We can see a grid of 3 columns in order of the Pokédex of the first generation of Pokémon, this means that we will have up to 151 Pokémon to collect. As we can see, depending on whether we have captured the Pokémon, its information will appear or it will appear as “??" if we have never captured it, as in any pokémon game.
 
@@ -67,8 +63,11 @@ Once we finish with the quiz, we will get the results of it, with the percentage
 ### Capture Page
 If we click on the capture button we will see an animation to see if we have captured the pokémon or not. The probability of capture will depend on the percentage of success of the quiz. If it is captured, it will be unlocked in the Pokédex.
 
-Capture Page            |  Capture Dialog Page            |  Captured Pokemon Page            
-:-------------------------:|:-------------------------:|:-------------------------:
+Capture Page            |  Capture Dialog Page                      
+:-------------------------:|:-------------------------:
 ![Screenshot_1630516040](https://user-images.githubusercontent.com/46267014/131714706-6473759d-849d-4988-bbce-02e30a711464.png)
 ![Screenshot_1630516047](https://user-images.githubusercontent.com/46267014/131714712-d1ad1d1f-8bf3-4e7c-8ad8-7d285d8fecc5.png)
-![Screenshot_1630516051](https://user-images.githubusercontent.com/46267014/131714718-fa361f52-678f-45b6-88f7-0e55306401d6.png)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/46267014/131714718-fa361f52-678f-45b6-88f7-0e55306401d6.png"  width="250">
+</p>
