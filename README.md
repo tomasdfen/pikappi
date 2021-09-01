@@ -21,8 +21,10 @@ In this screen we can see that its function is to personalize our profile and in
 ![Screenshot_1630515936](https://user-images.githubusercontent.com/46267014/131714557-e97be959-8e65-4591-a05a-1327f4275fca.png)
 
 ## Pokedex Page
-![Screenshot_1630515942](https://user-images.githubusercontent.com/46267014/131714618-7eb1e6b7-924e-47fb-ab58-54d2cc515224.png)
-![Screenshot_1630515963](https://user-images.githubusercontent.com/46267014/131714628-61b825e5-5075-4991-be74-22f262513809.png)
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![Screenshot_1630515942](https://user-images.githubusercontent.com/46267014/131714618-7eb1e6b7-924e-47fb-ab58-54d2cc515224.png)  |  ![Screenshot_1630515963](https://user-images.githubusercontent.com/46267014/131714628-61b825e5-5075-4991-be74-22f262513809.png)
 
 We can see a grid of 3 columns in order of the Pokédex of the first generation of Pokémon, this means that we will have up to 151 Pokémon to collect. As we can see, depending on whether we have captured the Pokémon, its information will appear or it will appear as “??" if we have never captured it, as in any pokémon game.
 
