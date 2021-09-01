@@ -7,7 +7,7 @@ On our home screen we can see all the buttons and routes to the other screens, a
 
 Home Page            
 :-------------------------:
-![Screenshot_1630515899](https://user-images.githubusercontent.com/46267014/131714509-584a9d17-f156-4607-931b-f65f5a245851.png | width=200)
+<img src="https://user-images.githubusercontent.com/46267014/131714509-584a9d17-f156-4607-931b-f65f5a245851.png" width="200">
 
 ## Settings Page
 It takes care of system settings and some options. This was a sample page for mere training with Flutter so a few have little functionality. The two buttons that we can actually interact with are those for music and notifications.
@@ -63,8 +63,8 @@ Results Page            |
 ### Capture Page
 If we click on the capture button we will see an animation to see if we have captured the pokémon or not. The probability of capture will depend on the percentage of success of the quiz. If it is captured, it will be unlocked in the Pokédex.
 
-Capture Page            | Capture Dialog Page            |Captured Pokemon Page            |  
-:-------------------------:|:-------------------------:|:-------------------------:|
+Capture Page            |  Capture Dialog Page            |  Captured Pokemon Page            
+:-------------------------:|:-------------------------:|:-------------------------:
 ![Screenshot_1630516040](https://user-images.githubusercontent.com/46267014/131714706-6473759d-849d-4988-bbce-02e30a711464.png)
 ![Screenshot_1630516047](https://user-images.githubusercontent.com/46267014/131714712-d1ad1d1f-8bf3-4e7c-8ad8-7d285d8fecc5.png)
 ![Screenshot_1630516051](https://user-images.githubusercontent.com/46267014/131714718-fa361f52-678f-45b6-88f7-0e55306401d6.png)
