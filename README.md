@@ -5,12 +5,15 @@ Pikappi is an application that consists of a Pokémon game where we can capture 
 ## Home Page
 On our home screen we can see all the buttons and routes to the other screens, apart from our favorite pokémon, which will change depending on the pokémon we choose to accompany us. The accesible buttons are: the settings page, the quizz minigame and the Pokédex respectively. At the top right we will find a button with an avatar of our chosen coach that will take us to the user settings.
 
+Loading Page            
+:-------------------------:
 ![Screenshot_1630515899](https://user-images.githubusercontent.com/46267014/131714509-584a9d17-f156-4607-931b-f65f5a245851.png)
-
 
 ## Settings Page
 It takes care of system settings and some options. This was a sample page for mere training with Flutter so a few have little functionality. The two buttons that we can actually interact with are those for music and notifications.
 
+Loading Page            |  
+:-------------------------:|
 ![Screenshot_1630515919](https://user-images.githubusercontent.com/46267014/131714536-be4181fa-533d-4620-904c-6cfe903d3bed.png)
 
 The first button is simply to choose if we want to listen to background music. The other option is to receive notifications, as soon as you activate this option, a notification will appear alerting us that the option to receive notifications from the game has been activated, and every day a local notification will appear on the phone reminding us to play.
@@ -22,7 +25,7 @@ In this screen we can see that its function is to personalize our profile and in
 
 ## Pokedex Page
 
-Solarized dark             |  Solarized Ocean
+Loading Page            |  Charged Pokedex
 :-------------------------:|:-------------------------:
 ![Screenshot_1630515942](https://user-images.githubusercontent.com/46267014/131714618-7eb1e6b7-924e-47fb-ab58-54d2cc515224.png)  |  ![Screenshot_1630515963](https://user-images.githubusercontent.com/46267014/131714628-61b825e5-5075-4991-be74-22f262513809.png)
 
